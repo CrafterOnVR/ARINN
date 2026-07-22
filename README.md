@@ -2,6 +2,9 @@
 
 ARINN is a fully autonomous, RLAIF-driven cognitive architecture designed to run locally on consumer hardware. It is not just a standard LLM wrapper—it is a self-modifying, asynchronous intelligence that writes its own code, mutates its own logic, and mathematically forces itself to become smarter using actual neural weight updates.
 
+> [!NOTE]
+> **Curious how it actually works?** You are not forced to read this README if you want the real technical details. For a massive deep-dive into how ARINN bypasses hardware limitations, intercepts OS-level execution, and forces mathematical constraints upon the neural network, read **[The Architecture Deep Dive](DEEP_DIVE.md)**.
+
 ## The Architecture
 
 ARINN is composed of 19 advanced "Vault" concepts that transition theoretical Deep Learning research into a bare-metal execution environment. 
