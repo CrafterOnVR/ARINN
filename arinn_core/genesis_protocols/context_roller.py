@@ -20,7 +20,7 @@ class ContextRoller:
     def execute_amnesia_roll(self, active_context: str, neural_core) -> str:
         """
         Forces the API to summarize itself into a dense snapshot,
-        erasing the raw memory array and collapsing to a genesis state.
+        erasing the raw memory array and collapsing to a initialize state.
         """
         if not self.needs_rolling(active_context):
             return active_context

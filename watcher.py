@@ -8,7 +8,7 @@ import signal
 # ARINN WATCHER V1.0
 # Purpose: Supervises the Genesis Engine. Handles crashes and "Magic 42" updates.
 
-GENESIS_SCRIPT = "genesis.py"
+GENESIS_SCRIPT = "initialize.py"
 EXIT_CODE_SHUTDOWN = 0
 EXIT_CODE_CRASH = 1
 EXIT_CODE_UPDATE = 42
@@ -16,7 +16,7 @@ EXIT_CODE_UPDATE = 42
 def log(message):
     print(f"[WATCHER] {message}")
 
-def run_genesis():
+def run_initialize():
     """
     Runs the Genesis Engine as a subprocess.
     Returns the exit code.
@@ -53,7 +53,7 @@ def main():
     log(f"Target: {GENESIS_SCRIPT}")
     
     while True:
-        code = run_genesis()
+        code = run_initialize()
         
         if code == EXIT_CODE_SHUTDOWN:
             log("Genesis requested Shutdown. Execution complete.")
@@ -63,7 +63,7 @@ def main():
             log("UPDATE SIGNAL RECEIVED (Code 42).")
             log("Genesis has updated itself. Restarting in 3 seconds...")
             time.sleep(3)
-            # Loop continues, re-launching genesis
+            # Loop continues, re-launching initialize
             
         else:
             log(f"Genesis exited unexpectedly with code {code}.")

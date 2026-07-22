@@ -7,7 +7,7 @@ if project_root not in sys.path:
 
 from arinn_core.continuous_learning import ContinuousLearner
 from super_enhanced_agent import SuperEnhancedResearchAgent
-from run_genesis import CURRICULUM, EXAM_HOURS
+from run_initialize import CURRICULUM, EXAM_HOURS
 
 def retry_exam():
     print("Initializing Agent and Learner for Final Exam Retake...")

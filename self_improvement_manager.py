@@ -130,9 +130,9 @@ class SelfImprovementManager:
             print(f"[ARINN-LOG] Applying {len(improvements)} code updates through the Crucible...")
             import sys
             sys.path.append(project_dir)
-            from arinn_core.crucible import Crucible # type: ignore
+            from arinn_core.testing_environment import Crucible # type: ignore
             
-            crucible = Crucible()
+            testing_environment = Crucible()
             
             def llm_generator(prompt: str) -> str:
                 import llm
@@ -151,7 +151,7 @@ class SelfImprovementManager:
             update_result = {"success": True}
             for imp in improvements:
                 prompt = f"Write a Python script to apply this architectural self-improvement: {imp['description']}\nSuggested changes: {imp['suggested_changes']}"
-                passed, final_code, feedback = crucible.filter_loop(llm_generator, prompt)
+                passed, final_code, feedback = testing_environment.filter_loop(llm_generator, prompt)
                 if not passed:
                     update_result = {"success": False, "error": f"Crucible rejected RSI mutation: {feedback}"}
                     break

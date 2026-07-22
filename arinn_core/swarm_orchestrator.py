@@ -104,7 +104,7 @@ def agent_optimizer(code_path):
         with open(code_path, "r") as f:
             base_code = f.read()
             
-        # We define a basic fitness function for the crucible
+        # We define a basic fitness function for the testing_environment
         def evaluate_speed(namespace):
             import time
             start = time.perf_counter()
@@ -121,14 +121,14 @@ def agent_optimizer(code_path):
             sys.path.append(PROJECT_ROOT)
             from arinn_core.ast_evolution import GeneticCodeEngine, ASTCrucible
             
-            crucible = ASTCrucible(evaluate_speed)
+            testing_environment = ASTCrucible(evaluate_speed)
             engine = GeneticCodeEngine(population_size=5, mutation_rate=0.3)
             
             # Evolve for just a few generations so we don't freeze the system
-            best_code, best_fitness = engine.evolve(base_code, crucible, generations=3)
+            best_code, best_fitness = engine.evolve(base_code, testing_environment, generations=3)
             
             # Calculate speed multiplier
-            baseline = crucible.execute_and_score(base_code)
+            baseline = testing_environment.execute_and_score(base_code)
             speed_multiplier = (best_fitness / baseline) if baseline > 0 else 1.0
             
             print(f"[Optimizer] AST Evolution complete! Fitness improved by a factor of {speed_multiplier:.2f}")

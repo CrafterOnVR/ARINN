@@ -17,7 +17,7 @@ HOURS_PER_TOPIC = 72
 EXAM_HOURS = 48
 TOTAL_HOURS = (HOURS_PER_TOPIC * len(CURRICULUM)) + EXAM_HOURS
 
-def start_temporal_genesis():
+def start_temporal_initialize():
     print("===============================================================")
     print(f"      ARINN TEMPORAL GENESIS RUN ({TOTAL_HOURS} HOURS) ")
     print("===============================================================")
@@ -57,11 +57,11 @@ def start_temporal_genesis():
             global_elapsed_seconds = json.load(f).get("active_elapsed_seconds", 0)
     else:
         # One-time migration from Absolute Time anchor
-        genesis_start_str = agent.db.get_genesis_start_time()
+        initialize_start_str = agent.db.get_initialize_start_time()
         global_elapsed_seconds = 0
-        if genesis_start_str:
+        if initialize_start_str:
             try:
-                start_dt = datetime.fromisoformat(genesis_start_str.replace("Z", "+00:00"))
+                start_dt = datetime.fromisoformat(initialize_start_str.replace("Z", "+00:00"))
                 import datetime as dt
                 now = dt.datetime.now(dt.timezone.utc)
                 global_elapsed_seconds = max(0, (now - start_dt).total_seconds())
@@ -147,4 +147,4 @@ def start_temporal_genesis():
     print(f"\n[GENESIS COMPLETE] {total_time:.2f} Hours Elapsed. See GENESIS_EXAM_RESULTS.md for localized outputs.")
 
 if __name__ == "__main__":
-    start_temporal_genesis()
+    start_temporal_initialize()

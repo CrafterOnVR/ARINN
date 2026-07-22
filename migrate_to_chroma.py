@@ -38,7 +38,7 @@ def migrate():
         for row in batch:
             doc_id_db, topic_id, url, title, content = row
             docs.append(content[:20000]) # Prevent massive strings from choking the embedder
-            metas.append({"source": "genesis_run", "url": url[:255] if url else "", "topic_id": topic_id, "title": title[:255] if title else ""})
+            metas.append({"source": "initialize_run", "url": url[:255] if url else "", "topic_id": topic_id, "title": title[:255] if title else ""})
             ids.append(f"doc_{doc_id_db}")
             
         try:

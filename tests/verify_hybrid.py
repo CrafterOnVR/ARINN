@@ -1,13 +1,13 @@
 
 import os
 import json
-from arinn_core.crucible import Crucible  # type: ignore
+from arinn_core.testing_environment import Crucible  # type: ignore
 from arinn_core.memory_logger import MemoryLogger  # type: ignore
 
 def verify_hybrid():
     print("=== Epoch VIII Verification (Hybrid Stack) ===\n")
     
-    crucible = Crucible()
+    testing_environment = Crucible()
     logger = MemoryLogger()
     
     # 1. Test Crucible Gatekeeper
@@ -15,7 +15,7 @@ def verify_hybrid():
     
     # Bad Code
     bad_code = "print('Hello World' " # Syntax Error
-    passed, _, msg = crucible.filter_loop(lambda x: bad_code, "Write bad code", max_retries=1)
+    passed, _, msg = testing_environment.filter_loop(lambda x: bad_code, "Write bad code", max_retries=1)
     if not passed:
         print(f"  > Blocked Bad Code: {msg} (Correct)")
     else:
@@ -23,7 +23,7 @@ def verify_hybrid():
         
     # Good Code
     good_code = "print('Verification Successful')"
-    passed, code, output = crucible.filter_loop(lambda x: good_code, "Write good code", max_retries=1)
+    passed, code, output = testing_environment.filter_loop(lambda x: good_code, "Write good code", max_retries=1)
     
     if passed and "Verification Successful" in output:
         print("  > Verified Good Code (Correct)")

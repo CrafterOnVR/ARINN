@@ -293,7 +293,7 @@ class Database:
             "negative_ratings": total_ratings - positive_ratings
         }
 
-    def get_genesis_start_time(self) -> Optional[str]:
+    def get_initialize_start_time(self) -> Optional[str]:
         """Physical anchor to retroactively compute temporal uptime if the script restarts."""
         if self.remote_url:
             return None

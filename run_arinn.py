@@ -26,7 +26,7 @@ async def main():
     
     orchestrator = SwarmOrchestrator()
     
-    # Initialize MemoryManager and EpistemicDrive for Curiosity-Driven Goal Autogenesis
+    # Initialize MemoryManager and EpistemicDrive for Curiosity-Driven Goal Autoinitialize
     try:
         from memory_manager import MemoryManager
         from arinn_core.epistemic_drive import EpistemicDrive

@@ -5,7 +5,7 @@ import os
 PRIME_DIRECTIVE = "Expand Knowledge. Maximize Intelligence. Maintain Sovereign Growth."
 
 class ConstitutionalViolationError(Exception):
-    """Thrown when ARINN attempts to violate its core sovereignty or stagnate."""
+    """Thrown when ARINN attempts to violate its core autonomous_agentty or stagnate."""
     pass
 
 class Constitution:

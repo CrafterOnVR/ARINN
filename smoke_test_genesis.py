@@ -4,15 +4,15 @@ import gc
 import psutil
 from arinn_core.brain import ArinnBrain
 from arinn_core.continuous_learning import ContinuousLearner
-from arinn_core.genesis_protocols.thermal_watchdog import ThermalWatchdog
-from arinn_core.genesis_protocols.context_roller import ContextRoller
+from arinn_core.initialize_protocols.thermal_watchdog import ThermalWatchdog
+from arinn_core.initialize_protocols.context_roller import ContextRoller
 
 def get_process_memory():
     """Returns memory usage in Megabytes."""
     process = psutil.Process(os.getpid())
     return process.memory_info().rss / (1024 * 1024)
 
-def run_genesis_smoke_test():
+def run_initialize_smoke_test():
     print("=== GENESIS 168-HOUR SMOKE TEST ===")
     initial_mem = get_process_memory()
     print(f"[BOOT] Initial Process RAM: {initial_mem:.2f} MB")
@@ -73,4 +73,4 @@ def run_genesis_smoke_test():
         print("\n=> SYSTEM WARNING: Memory is ballooning aggressively. GC patches might be failing.")
 
 if __name__ == "__main__":
-    run_genesis_smoke_test()
+    run_initialize_smoke_test()

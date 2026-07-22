@@ -12,7 +12,7 @@ ARINN is a next-generation autonomous agent designed for continuous self-improve
 ## 2. Intelligence & Meta-Learning
 *   **Hivemind Architecture (Phase 8)**: 
     *   **Structure**: 20 Interconnected Expert Networks (`SubBrain`) managed by a Mixture-of-Experts Gating system.
-    *   **Neurogenesis**: Autonomous capability to expand hidden layers (+16 neurons) when learning plateaus are detected.
+    *   **Neuroinitialize**: Autonomous capability to expand hidden layers (+16 neurons) when learning plateaus are detected.
     *   **Deep Topology**: Experts use `[64, 256, 256, 256, 64]` architecture.
 *   **Continuous Learning**: Cycles for `Reasoning`, `Efficiency`, `Simple Topics`, and `Real-World Learning`.
 *   **Autonomous Meta-Efficiency (Phase 7)**: 

@@ -8,7 +8,7 @@ from .omega import Omega
 class CuriosityEngine:
     """
     Phase 40: The Genesis Protocol.
-    Autogenesis: Self-generated directives based on knowledge gaps.
+    Autoinitialize: Self-generated directives based on knowledge gaps.
     """
     def __init__(self):
         self.titan = TitanMemory()
@@ -50,7 +50,7 @@ class CuriosityEngine:
         Runs while idle. Finds gaps -> Solves them.
         """
         start = time.time()
-        print("[GENESIS] Entering Wake Cycle (Autogenesis Mode)...")
+        print("[GENESIS] Entering Wake Cycle (Autoinitialize Mode)...")
         
         while time.time() - start < duration_s:
             gaps = self.find_knowledge_gaps()

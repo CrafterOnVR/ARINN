@@ -2,13 +2,13 @@
 import threading
 import time
 import sys
-from sovereign import sovereign_loop  # type: ignore
+from autonomous_agent import autonomous_agent_loop  # type: ignore
 
-def verify_sovereign():
+def verify_autonomous_agent():
     print("[TEST] Launching Sovereign Loop in background...")
     
     # Run loop in thread so we can kill it
-    t = threading.Thread(target=sovereign_loop, daemon=True)
+    t = threading.Thread(target=autonomous_agent_loop, daemon=True)
     t.start()
     
     print("[TEST] Thread started. Watching for 10 seconds...")
@@ -21,4 +21,4 @@ def verify_sovereign():
         print("[TEST] Sovereign died prematurely. Test Failed.")
 
 if __name__ == "__main__":
-    verify_sovereign()
+    verify_autonomous_agent()

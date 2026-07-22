@@ -38,7 +38,7 @@ class RSICrucible:
             try:
                 # 60 second absolute timeout for the entire evolutionary run
                 result = subprocess.run(
-                    ["python", "daydreamer.py"], 
+                    ["python", "background_worker.py"], 
                     cwd=temp_dir,
                     capture_output=True, 
                     text=True, 

@@ -26,7 +26,7 @@ Phase 83 is about giving ARINN the ability to dynamically write, test, and hot-l
 2.  **Verify Toolmaker**: Run `python verify_toolmaker.py`.
     - If it OOMs or fails, troubleshoot the context size in `config_optimized.yaml` or the code extraction logic block in `toolmaker.py`.
     - If it succeeds, Phase 83 is complete!
-3.  **Complete the Orchestrator loop**: Hook up the Toolmaker to `genesis.py` so ARINN automatically writes a tool when it hits a missing dependency.
+3.  **Complete the Orchestrator loop**: Hook up the Toolmaker to `initialize.py` so ARINN automatically writes a tool when it hits a missing dependency.
 4.  **Prepare Autoresearch Data**: Run `uv run prepare.py` inside `autoresearch-master/autoresearch-master` to download the Shakespeare dataset.
 5.  **Kick off Autoresearch (Phase 84)**: Run the execution loop!
 

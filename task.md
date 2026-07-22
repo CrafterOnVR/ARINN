@@ -155,7 +155,7 @@
 
 # Epoch VIII: The Hybrid Evolutionary Stack
 - [x] **Phase 70: The Crucible (Local Verification)**
-    - [x] **Module**: Implement `arinn_core/crucible.py` (Gatekeeper).
+    - [x] **Module**: Implement `arinn_core/testing_environment.py` (Gatekeeper).
     - [x] **Logic**: Verify code (Sandbox), Retry Loop (3x), Tag "Golden".
     - [x] **Integration**: `verify_hybrid.py` confirms bad code blocked / good code passing.
 - [x] **Phase 73: Cloud Dreaming (Remote Evolution)**
@@ -169,7 +169,7 @@
     - [x] **Loader**: Create `arinn_loader.py` for GGUF/llama-cpp-python loading.
     - [x] **Dependency**: `llama-cpp-python` (Installed with VS Build Tools).
 - [x] **Phase 76: The Crucible V2 (Linter & Sandbox)**
-    - [x] **Crucible**: Update `crucible.py` with `flake8` and strict timeout.
+    - [x] **Crucible**: Update `testing_environment.py` with `flake8` and strict timeout.
     - [x] **Verification**: Ensure it catches syntax errors before execution.
 - [x] **Phase 77: Cloud Dreams V2 (ShareGPT & Mistral)**
     - [x] **Logger**: Update `memory_logger.py` to ShareGPT format.
@@ -193,12 +193,12 @@
     - [x] **Verification**: `verify_browser.py` passed (Screenshot captured).
 
 - [x] **Phase 81: The Genesis Engine (Autonomy)**
-    - [x] **Engine**: Create `genesis.py` (Infinite Research Loop).
+    - [x] **Engine**: Create `initialize.py` (Infinite Research Loop).
     - [x] **Integration**: Connect `arinn_loader` (Mistral-Nemo), `Crucible` (Linter), and `MemoryLogger`.
     - [x] **Dashboard**: Implement `dashboard.html` status reporter.
 
 - [x] **Phase 81.5: Architectural Foundations (Corrections)**
-    - [x] **The Watcher**: Implement `watcher.py` to supervise `genesis.py` and handle safe restarts/updates (Fixes Self-Writing Paradox).
+    - [x] **The Watcher**: Implement `watcher.py` to supervise `initialize.py` and handle safe restarts/updates (Fixes Self-Writing Paradox).
     - [x] **Dual Mind**: Refactor `neural_core` to run PyTorch (Subconscious) and Mistral (Conscious) in parallel.
     - [x] **Prompt Hive**: Refactor `hivemind.py` to use Context-Switching (System Prompts) instead of 20 loaded models (Fixes OOM).
 - [x] **Phase 80: Browser Sovereignty (Digital Interface)**
@@ -207,7 +207,7 @@
     - [x] **Verification**: `verify_browser.py` passed (Screenshot captured).
 
 - [x] **Phase 81: The Genesis Engine (Autonomy)**
-    - [x] **Engine**: Create `genesis.py` (Infinite Research Loop).
+    - [x] **Engine**: Create `initialize.py` (Infinite Research Loop).
     - [x] **Integration**: Connect `arinn_loader` (Mistral-Nemo), `Crucible` (Linter), and `MemoryLogger`.
     - [x] **Dashboard**: Implement `dashboard.html` status reporter.
 
@@ -215,7 +215,7 @@
 - [x] **Phase 82: The Async Swarm (Greater Autonomy)**
     - [x] **Async Engine**: Implement `arinn_core/async_swarm.py` using `asyncio` + `aiohttp`.
     - [x] **Parallelism**: Run 5+ Research Loops simultaneously (Non-blocking LLM calls).
-    - [x] **Orchestrator**: Update `genesis.py` to manage the Event Loop.
+    - [x] **Orchestrator**: Update `initialize.py` to manage the Event Loop.
 
 - [x] **Phase 83: The Toolmaker (Dynamic Generation)**
     - [x] **Tool Forge**: Allow ARINN to write new Python scripts into `tools/`.
@@ -237,7 +237,7 @@
     - [x] **Spawn**: Logic to open new terminal windows running Satellites.
     - [x] **Verification**: `verify_nebula.py`.
 
-- [x] **Phase 52: The Genesis Protocol (True Autogenesis)**
+- [x] **Phase 52: The Genesis Protocol (True Autoinitialize)**
     - [x] **Curiosity Engine**: Implement `arinn_core/curiosity.py` (Gap Analysis in Titan).
     - [x] **Self-Prompting**: Logic to trigger Omega loops during idle time based on curiosity.
 - [x] **Phase 53: The Silicon Cortex (Real Local Intelligence)**
@@ -337,8 +337,8 @@
 - [x] **Phase 61: The Sovereign Architecture**
     - [x] **Unification**: Connect `NeuralCore` to `TinyLlama` (One Brain).
     - [x] **Safe Evolution**: Upgrade `Architect` with `Sandbox` and `Teacher` checks.
-    - [x] **Sovereign Loop**: Create `sovereign.py` as the new main entry point (Hivemind + Referee).
-    - [x] **Verification**: `verify_sovereign.py` passed. Full Compliance Achieved.
+    - [x] **Sovereign Loop**: Create `autonomous_agent.py` as the new main entry point (Hivemind + Referee).
+    - [x] **Verification**: `verify_autonomous_agent.py` passed. Full Compliance Achieved.
 
 # Epoch VII: The Remediation (Stability & Safety)
 - [x] **Phase 62: Epistemic Stability (Truth)**

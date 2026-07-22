@@ -11,7 +11,7 @@ import sys
 
 # Local Modules
 from arinn_core.async_swarm import AsyncSwarm  # type: ignore
-from crucible import verify_code  # type: ignore
+from testing_environment import verify_code  # type: ignore
 from memory_logger import log_golden_memory, retrieve_relevant_memory  # type: ignore
 
 RESTART_FLAG = "RESTART_REQUIRED"

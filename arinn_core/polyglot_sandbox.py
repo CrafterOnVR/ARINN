@@ -68,11 +68,11 @@ class PolyglotGeneticEngine:
         self.pop_size = population_size
         self.mutation_rate = mutation_rate
 
-    def evolve(self, base_code: str, crucible: DockerCrucible, generations=10, stagnation_detector=None):
+    def evolve(self, base_code: str, testing_environment: DockerCrucible, generations=10, stagnation_detector=None):
         print(f"[POLYGLOT ENGINE] Initiating Docker Genetic Evolution (Gen: {generations}, Pop: {self.pop_size})")
         
         # 1. ESTABLISH ABSOLUTE BASELINE
-        baseline_fitness = crucible.execute_and_score(base_code)
+        baseline_fitness = testing_environment.execute_and_score(base_code)
         
         population = [base_code] * (self.pop_size - 1)
         best_code = base_code
@@ -84,7 +84,7 @@ class PolyglotGeneticEngine:
             
             # 2. EVALUATE FITNESS (Mutations)
             for candidate_code in population:
-                fitness = crucible.execute_and_score(candidate_code)
+                fitness = testing_environment.execute_and_score(candidate_code)
                 scored_population.append((candidate_code, fitness))
                 
             # 3. ENFORCE ELITISM

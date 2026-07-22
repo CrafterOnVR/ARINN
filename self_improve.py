@@ -24,14 +24,14 @@ def start_rsi():
         
     print(f"[RSI] Loaded Target Architecture: {target_file}")
     
-    crucible = RSICrucible(project_root, target_file)
+    testing_environment = RSICrucible(project_root, target_file)
     # Extremely aggressive mutation rate for structural changes, but small population due to massive sandbox overhead
     engine = GeneticCodeEngine(population_size=10, mutation_rate=0.5) 
     
     print("[RSI] Beginning Brain Mutation...")
     
     # DEEP THOUGHT TARGETING: We mathematically profile that 'evolve' is the bottleneck
-    best_brain_code, fitness = engine.evolve(brain_seed_code, crucible, generations=2, target_function="evolve")
+    best_brain_code, fitness = engine.evolve(brain_seed_code, testing_environment, generations=2, target_function="evolve")
     
     print("\n[META-EVOLUTION COMPLETE]")
     print(f"Final Brain Benchmark Speed Score: {fitness:.4f}")

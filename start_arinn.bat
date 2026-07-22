@@ -20,5 +20,5 @@ echo [BOOT] Initializing Continuous Learning Matrices...
 echo.
 
 :: Launch the main 336-Hour Temporal execution loop
-python run_genesis.py
+python run_initialize.py
 pause

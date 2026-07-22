@@ -116,10 +116,10 @@ class ASTCrucible:
 
 class GeneticCodeEngine:
 
-    def evolve(self, base_code: str, crucible: ASTCrucible, generations=11, stagnation_detector=None, target_function=None):
+    def evolve(self, base_code: str, testing_environment: ASTCrucible, generations=11, stagnation_detector=None, target_function=None):
         print(f'[AST ENGINE] Initiating Genetic Code Evolution (Generations: {generations}, Population: {self.pop_size})')
         try:
-            baseline_fitness = crucible.execute_and_score(base_code)
+            baseline_fitness = testing_environment.execute_and_score(base_code)
         except Exception:
             baseline_fitness = 0.0
         best_code = base_code

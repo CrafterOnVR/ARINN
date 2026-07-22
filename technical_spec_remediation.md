@@ -108,7 +108,7 @@ A `manifest` defines files that are **Read-Only** to the Agent's own `Architect`
 
 ```python
 IMMUTABLE_CORE = {
-    "sovereign.py": "sha256:abc...",   # The Main Loop
+    "autonomous_agent.py": "sha256:abc...",   # The Main Loop
     "sandbox.py": "sha256:def...",     # The Safety Enforcer
     "constitution.py": "sha256:123..." # The Rules definitions
 }

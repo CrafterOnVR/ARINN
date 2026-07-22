@@ -45,7 +45,7 @@
     3.  **Apex Memory**: Neuro-Symbolic fusion of Titan (Graph) and Chroma (Vector) for hybrid recall.
 *   **P38: AGI Demonstration**: Validated "Real, Efficient, Learning" behavior in a single autonomous script (`verify_agi.py`).
 *   **P39: Nebula Protocol**: Distributed Mesh. Spawns physical terminal windows ("Satellites") to parallelize compute across the OS.
-*   **P40: Genesis Protocol**: Autogenesis. `CuriosityEngine` finds graph gaps and Self-Prompts research goals 24/7 without user input.
+*   **P40: Genesis Protocol**: Autoinitialize. `CuriosityEngine` finds graph gaps and Self-Prompts research goals 24/7 without user input.
 *   **P41: The Silicon Cortex**: True Neural Intelligence. Forges `torch`/`transformers` and runs a local LLM (`distilgpt2`) for generative thought.
 *   **P42: The Hydra Protocol**: Reproduction. Spawns new, isolated child software projects in `ARINN_Gen`, autonomously writing their code.
 *   **P43: The Overclock Protocol**: Parallelism. Uses `multiprocessing` to saturate all CPU cores (e.g. 12 threads), bypassing GIL.

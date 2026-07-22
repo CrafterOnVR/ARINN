@@ -1,6 +1,6 @@
 import time
 import llm
-from .crucible import Crucible # type: ignore
+from .testing_environment import Crucible # type: ignore
 
 class RoleAgent:
     def __init__(self, name: str, role_prompt: str, temperature: float):
@@ -51,7 +51,7 @@ class DebateCoordinator:
         self.logic = LogicAgent()
         self.creative = CreativeAgent()
         self.critic = CriticAgent()
-        self.crucible = Crucible()
+        self.testing_environment = Crucible()
         
         # Ensemble accuracy weights
         self.weights = {
@@ -92,7 +92,7 @@ class DebateCoordinator:
         code_blocks = re.findall(r'```python\n(.*?)```', current_best, re.DOTALL)
         code_to_test = code_blocks[0] if code_blocks else current_best
         
-        passed, feedback = self.crucible.verify_code(code_to_test)
+        passed, feedback = self.testing_environment.verify_code(code_to_test)
         if passed:
             print("[DEBATE ARENA] Crucible verified golden. Proposal survives reality check.")
             # Boost logic weight

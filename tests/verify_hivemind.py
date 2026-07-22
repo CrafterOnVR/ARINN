@@ -3,7 +3,7 @@ import unittest
 from arinn_core.hivemind import HiveSwarm
 
 class TestHivemind(unittest.TestCase):
-    def test_01_genesis(self):
+    def test_01_initialize(self):
         print("\n[TEST] Verifying Hive Genesis...")
         hive = HiveSwarm()
         self.assertEqual(len(hive.brains), 20, "Should have 20 SubBrains")

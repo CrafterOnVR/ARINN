@@ -1,4 +1,4 @@
-from arinn_core.crucible import Crucible  # type: ignore
+from arinn_core.testing_environment import Crucible  # type: ignore
 
 _instance = None
 

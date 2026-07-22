@@ -13,7 +13,7 @@ try:
     print("   Done.")
 
     print("3. Importing GenesisEngine...")
-    from genesis import GenesisEngine  # type: ignore
+    from initialize import GenesisEngine  # type: ignore
     print("   Done.")
     
     print("4. Initializing GenesisEngine...")

@@ -149,14 +149,14 @@ I performed a full codebase audit to replace simulated logic with real-world eff
         4.  **Autonomy**: The `Omega` loop analyzed the concept of Singularity, consulted the Hive, and **Autonomously proposed a code refactor** to improve itself.
     *   **Conclusion**: ARINN behaves as a Real, Efficient, Learning, and Self-Optimizing Agent.
 
-### Phase 39-40: The Next Level (Distribution & Autogenesis)
+### Phase 39-40: The Next Level (Distribution & Autoinitialize)
 *   **Test**: `verify_nebula.py`
     *   **Result**: Validated Distributed Computing.
     *   **Proof**:
         *   **Core**: Started HTTP Command Server on port 9999.
         *   **Mesh**: Successfully spawned **2 Real Terminal Windows**.
         *   **Distributed Work**: Dispatched 'Quantum Computing' and 'Neural Networks' tasks to separate satellites (IDs: `SAT-26844`, `SAT-23260`) and received successful results.
-*   **Test**: `verify_genesis.py`
+*   **Test**: `verify_initialize.py`
     *   **Result**: Validated Self-Prompting (Curiosity).
     *   **Proof**:
         *   **Gap Analysis**: Curiosity Engine scanned Titan memory and found 2 isolated nodes ('Mystery_X', 'Mystery_Y').
@@ -264,17 +264,17 @@ I performed a full codebase audit to replace simulated logic with real-world eff
     *   **Conclusion**: ARINN now possesses Code-Writing Intelligence.
 
 ### Epoch VI: The Sovereign (Compliance)
-*   **Test**: `sovereign.py`, `verify_sovereign.py`
+*   **Test**: `autonomous_agent.py`, `verify_autonomous_agent.py`
     *   **Phase 61 (The Sovereign Protocol)**: Verified Full Compliance with User's Level 3 Definition.
     *   **Unification**: Replaced legacy `distilgpt2` in `NeuralCore` with `TinyLlama`. All subsystems now use the 1.1B Brain.
     *   **Safety**: Upgraded `Architect` to "Level 4" Safety. It now sandboxes code and asks "Teacher" (TinyLlama) to review snippets before editing self-code.
-    *   **Loop**: Created `sovereign.py`. A continuous, infinite loop where the `Hivemind` debates goals and the `Referee` selects actions.
+    *   **Loop**: Created `autonomous_agent.py`. A continuous, infinite loop where the `Hivemind` debates goals and the `Referee` selects actions.
 
 ### Epoch VII: The Remediation (Stability)
 *   **Test**: `verify_remediation.py`
     *   **Epistemic Stability**: Verified `TruthVerificationLayer`. Facts now have Reliability Scores ($W_s \cdot R + W_c \cdot V$) and Provenance logic. Low-confidence data is garbage collected.
     *   **Capability Transfer**: Verified `DistillationEngine`. `TinyLlama` (Teacher) successfully synthesized training examples to teach a Student Model (Mock).
-    *   **Structural Coherence**: Verified `Constitution`. Core files (`sovereign.py`) are cryptographically locked. `DriftDetector` monitors Semantic Alignment.
+    *   **Structural Coherence**: Verified `Constitution`. Core files (`autonomous_agent.py`) are cryptographically locked. `DriftDetector` monitors Semantic Alignment.
 
 ### Epoch VIII: The Hybrid Evolutionary Stack
 *   **Test**: `verify_hybrid.py`
@@ -353,7 +353,7 @@ The AI is now a **Hivemind** (Mixture of Experts) rather than a single network.
 
 *   **Structure**: 20 Interconnected `SubBrains` managed by an `ArinnHivemind` container.
 *   **Topology**: Each expert uses a deep autoencoder structure `[64, 256, 256, 256, 64]`.
-*   **Neurogenesis**: Implemented `dynamic_expansion`. The AI can add 16 neurons to all hidden layers of all experts at runtime if it gets stuck (Plateau Detection) or randomly during exploration.
+*   **Neuroinitialize**: Implemented `dynamic_expansion`. The AI can add 16 neurons to all hidden layers of all experts at runtime if it gets stuck (Plateau Detection) or randomly during exploration.
 
 Verified with `verify_hivemind.py`:
 ```
@@ -533,7 +533,7 @@ Verified with `verify_planetary.py`:
 **Status**: [x] Verified
 - **Changes**:
   - Implemented `retrieve_relevant_memory` in `memory_logger.py`.
-  - Updated `genesis.py` to use `retrieve -> prompt -> code` loop.
+  - Updated `initialize.py` to use `retrieve -> prompt -> code` loop.
   - Verified syntax of new module.
 - **Results**:
   - Enabled Retrieval Augmented Generation (RAG) for self-coding tasks.
@@ -564,7 +564,7 @@ Verified with `verify_planetary.py`:
 ### Phase 82: The Async Swarm (Greater Autonomy)
 **Status**: [x] Verified
 - **Async Engine**: Implemented `arinn_core/async_swarm.py`.
-- **Orchestration**: Updated `genesis.py` (V1.4) to manage an Event Loop.
+- **Orchestration**: Updated `initialize.py` (V1.4) to manage an Event Loop.
 - **Parallelism**: `ThreadPoolExecutor` handles blocking LLM thoughts while `asyncio` handles I/O.
 - **Proof**: `dashboard.html` updated to "Genesis Engine v1.4 (Async Swarm)" with "active_workers" metrics.
 

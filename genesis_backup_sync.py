@@ -10,7 +10,7 @@ import sys
 
 # Local Modules
 from arinn_core.neural_core import NeuralCore
-from crucible import verify_code
+from testing_environment import verify_code
 from memory_logger import log_golden_memory, retrieve_relevant_memory
 from arinn_core.hivemind import HiveSwarm
 

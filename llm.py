@@ -12,7 +12,7 @@ except Exception:  # pragma: no cover
 DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 
 
-from arinn_core.genesis_protocols.circadian_rhythm import CircadianWatchdog
+from arinn_core.initialize_protocols.circadian_rhythm import CircadianWatchdog
 
 class LLMClient:
     def __init__(self, enabled: bool = True):

@@ -47,11 +47,11 @@ def calculate(a, b):
         except Exception:
             return 0.2 # Function threw an error, but it compiled!
 
-    crucible = ASTCrucible(fitness_fn)
+    testing_environment = ASTCrucible(fitness_fn)
     engine = GeneticCodeEngine(population_size=100, mutation_rate=0.3)
     
     # Evolve over 50 generations max
-    best_code, best_fitness = engine.evolve(seed_code, crucible, generations=50)
+    best_code, best_fitness = engine.evolve(seed_code, testing_environment, generations=50)
     
     print("\n" + "="*60)
     print("EVOLUTIONARY RESULTS")

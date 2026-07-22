@@ -7,7 +7,7 @@ from arinn_core.architect import Architect  # type: ignore
 from arinn_core.hydra import HydraProtocol  # type: ignore
 from arinn_core.archive import ArchiveEngine  # type: ignore
 
-def sovereign_loop():
+def autonomous_agent_loop():
     """
     Phase 61: The Sovereign Loop.
     The Main Event Loop for the Level 3 Autonomous Agent.
@@ -78,4 +78,4 @@ def sovereign_loop():
         time.sleep(5)
 
 if __name__ == "__main__":
-    sovereign_loop()
+    autonomous_agent_loop()

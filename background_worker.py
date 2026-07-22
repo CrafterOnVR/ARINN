@@ -62,12 +62,12 @@ def start_daydreaming():
         seed_code = goal["seed"]
         print(f"[MEMORY] Memory Retrieved Seed Code:\n{seed_code.strip()}\n")
         
-        crucible = AdversarialCrucible(ADVERSARIAL_TEST_CODE)
+        testing_environment = AdversarialCrucible(ADVERSARIAL_TEST_CODE)
         
         detector.start_new_goal(goal["id"])
         
         try:
-            best_code, fitness = engine.evolve(seed_code, crucible, generations=2, stagnation_detector=detector)
+            best_code, fitness = engine.evolve(seed_code, testing_environment, generations=2, stagnation_detector=detector)
             
             print("\n[EVOLUTION COMPLETE]")
             print(f"[SUCCESS] ARINN autonomously optimized {goal['id']} through Adversarial Self-Play!")
