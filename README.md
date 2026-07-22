@@ -1,4 +1,4 @@
-# ARINN: Autonomous Recursive Intelligence Neural Network
+# ARINN: Autonomous Recursive Improving Neural Network
 
 ARINN is a fully autonomous, RLAIF-driven cognitive architecture designed to run locally on consumer hardware. It is not just a standard LLM wrapper—it is a self-modifying, asynchronous intelligence that writes its own code, mutates its own logic, and mathematically forces itself to become smarter using actual neural weight updates.
 
