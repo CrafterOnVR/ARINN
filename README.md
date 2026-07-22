@@ -34,7 +34,9 @@ ARINN was specifically engineered to bypass the NVIDIA CUDA monopoly. It utilize
     ```bash
     pip install -r requirements.txt
     ```
-4.  **Engage the Singularity Protocol**:
+4.  **Configure API Keys**:
+    ARINN uses OpenRouter to bypass OpenAI's closed ecosystem. You must get a free API key from [OpenRouter](https://openrouter.ai/) and paste it into `launch_genesis.bat` on line 10 (`set LLM_API_KEY=your_openrouter_api_key_here`).
+5.  **Engage the Singularity Protocol**:
     ```bash
     python run_singularity.py
     ```
