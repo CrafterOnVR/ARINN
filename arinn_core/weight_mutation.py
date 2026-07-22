@@ -42,6 +42,19 @@ class DarwinianMutator:
         mutated_tensor = mutated_shifted - 1.0
         return mutated_tensor
         
+    def _check_drift_bounds(self, baseline_tensor: torch.Tensor, mutated_tensor: torch.Tensor):
+        """
+        Calculates the percentage of flipped bits between the baseline and mutated tensor.
+        If it exceeds 15% (0.15), it rejects the mutation to prevent structural drift.
+        """
+        diff = torch.abs(baseline_tensor - mutated_tensor)
+        flipped_percentage = (diff > 0).float().mean().item()
+        
+        if flipped_percentage > 0.15:
+            print(f"[VAULT-6] FATAL: Drift Bounds Exceeded ({flipped_percentage:.2%}). Rejecting mutation.")
+            return False
+        return True
+
     def execute_tournament_selection(self, model_weights: dict):
         """
         Takes the current LoRA weights, quantizes them, applies random mutations 
@@ -58,6 +71,11 @@ class DarwinianMutator:
                 
                 # 2. Mutate the genetic code of the matrix
                 mutated_ternary = self._apply_bitwise_mutation(ternary_weights)
+                
+                # Bounds check
+                if not self._check_drift_bounds(ternary_weights, mutated_ternary):
+                    mutated_model[key] = tensor # Keep original
+                    continue
                 
                 # 3. De-quantize back to FP16 for standard inference
                 mutated_model[key] = (mutated_ternary * scale).half()

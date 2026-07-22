@@ -172,6 +172,7 @@ def agent_examiner(metrics, task_name=None):
 class SwarmOrchestrator:
     def __init__(self):
         self.active_processes = []
+        self.mutation_lock = asyncio.Lock()
         
     async def start_swarm_cycle(self, task):
         print("\n==================================================")
@@ -181,32 +182,34 @@ class SwarmOrchestrator:
         loop = asyncio.get_running_loop()
         
         # We use a ProcessPoolExecutor so our heavy AST mutations don't block the async event loop
-        with concurrent.futures.ProcessPoolExecutor(max_workers=4) as pool:
-            # Phase 1: Research and Architect run truly concurrently!
-            print("[Orchestrator] Phase 1: Launching Researcher and Architect concurrently...")
-            res_future = loop.run_in_executor(pool, agent_researcher, task)
-            arch_future = loop.run_in_executor(pool, agent_architect, task)
-            
-            res_data, arch_data = await asyncio.gather(res_future, arch_future)
-            
-            if res_data.get("status") == "error" or arch_data.get("status") == "error":
-                print(f"[Orchestrator] Error in Phase 1. Invoking Debate Arena...\nRes: {res_data}\nArch: {arch_data}")
-                await self.invoke_debate_arena(task)
-                return
+        # We wrap the entire execution cycle in the mutation_lock to prevent LoRA mutation collisions
+        async with self.mutation_lock:
+            with concurrent.futures.ProcessPoolExecutor(max_workers=4) as pool:
+                # Phase 1: Research and Architect run truly concurrently!
+                print("[Orchestrator] Phase 1: Launching Researcher and Architect concurrently...")
+                res_future = loop.run_in_executor(pool, agent_researcher, task)
+                arch_future = loop.run_in_executor(pool, agent_architect, task)
                 
-            print("[Orchestrator] Initial phase complete. Spawning Optimizer and Examiner...")
-            
-            # Phase 2: Optimize the drafted code
-            opt_future = loop.run_in_executor(pool, agent_optimizer, arch_data["result"])
-            opt_data = await opt_future
-            
-            if opt_data.get("status") == "error":
-                print(f"[Orchestrator] Optimizer Error. Recovering... {opt_data}")
-                opt_data = {"status": "error", "agent": "optimizer", "speed_multiplier": 0.5}
-            
-            # Phase 3: Examiner validates
-            exam_future = loop.run_in_executor(pool, agent_examiner, opt_data, task)
-            exam_data = await exam_future
+                res_data, arch_data = await asyncio.gather(res_future, arch_future)
+                
+                if res_data.get("status") == "error" or arch_data.get("status") == "error":
+                    print(f"[Orchestrator] Error in Phase 1. Invoking Debate Arena...\nRes: {res_data}\nArch: {arch_data}")
+                    await self.invoke_debate_arena(task)
+                    return
+                    
+                print("[Orchestrator] Initial phase complete. Spawning Optimizer and Examiner...")
+                
+                # Phase 2: Optimize the drafted code
+                opt_future = loop.run_in_executor(pool, agent_optimizer, arch_data["result"])
+                opt_data = await opt_future
+                
+                if opt_data.get("status") == "error":
+                    print(f"[Orchestrator] Optimizer Error. Recovering... {opt_data}")
+                    opt_data = {"status": "error", "agent": "optimizer", "speed_multiplier": 0.5}
+                
+                # Phase 3: Examiner validates
+                exam_future = loop.run_in_executor(pool, agent_examiner, opt_data, task)
+                exam_data = await exam_future
             
         print("[Orchestrator] Swarm Cycle Complete.")
         

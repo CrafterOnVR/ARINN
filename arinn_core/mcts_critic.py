@@ -10,9 +10,14 @@ class ParanoiaCritic:
     """
     def __init__(self):
         self.rollout_budget = 5 # Number of MCTS simulation branches
+        self.max_ttl_seconds = 10.0 # Strict Time-To-Live
         
-    def _simulate_edge_case(self, source_code: str, edge_case: dict):
+    def _simulate_edge_case(self, source_code: str, edge_case: dict, current_depth: int = 0):
         """Simulates running the code against a specific edge case safely (Mock)."""
+        if current_depth > 5:
+            print("[VAULT-12] FATAL: Max search depth exceeded. Failsafe triggered.")
+            return False
+            
         # In a full implementation, this would spin up an isolated Docker container
         # or use a WebAssembly sandbox to run the test. Here we parse the AST
         # to look for obvious failure points (like missing bounds checks).
@@ -37,6 +42,8 @@ class ParanoiaCritic:
         """
         Runs the MCTS rollouts to find vulnerabilities in the code.
         """
+        import time
+        start_time = time.time()
         print("[VAULT-12] Paranoia Critic Activated. Initializing Adversarial MCTS Rollouts...")
         
         edge_cases = [
@@ -49,10 +56,14 @@ class ParanoiaCritic:
         
         survived = True
         for i in range(self.rollout_budget):
+            if time.time() - start_time > self.max_ttl_seconds:
+                print(f"[VAULT-12] FATAL: MCTS Critic TTL limit ({self.max_ttl_seconds}s) exceeded. Denying execution.")
+                return False
+                
             case = random.choice(edge_cases)
             print(f"[VAULT-12] Critic Rollout {i+1}/{self.rollout_budget} -> Testing Edge Case: {case['type']}")
             
-            if not self._simulate_edge_case(source_code, case):
+            if not self._simulate_edge_case(source_code, case, current_depth=1):
                 print(f"[VAULT-12] CRITICAL VULNERABILITY FOUND! Code failed on: {case['desc']}")
                 survived = False
                 break

@@ -39,12 +39,34 @@ class EpistemicDrive:
         
         return epistemic_value
         
+    def _check_memory_coherence(self):
+        """
+        Samples random clusters to determine if the TitanMemory is fragmented.
+        If variance is extremely high, we halt EFE generation.
+        """
+        try:
+            results = self.memory.search_memory(query="general knowledge", n_results=5)
+            distances = results.get("distances", [[0.0]])[0]
+            if distances and len(distances) > 1:
+                mean = sum(distances) / len(distances)
+                variance = sum((x - mean) ** 2 for x in distances) / len(distances)
+                # If variance is dangerously high, memory is fragmented.
+                if variance > 10.0:
+                    return False
+            return True
+        except Exception:
+            return True
+
     def generate_curiosity_goal(self):
         """
         Scans the memory latent space, identifies areas of high Expected Free Energy,
         and hallucinated a target goal to minimize that energy.
         """
         print("[EPISTEMIC] Active Inference Engine Online. Scanning latent topology for high-EFE zones...")
+        
+        if not self._check_memory_coherence():
+            print("[EPISTEMIC] FATAL: TitanMemory is heavily fragmented. Coherence check failed.")
+            return "Consolidate memory and defragment latent space."
         
         # In a full implementation, we would extract bounding boxes of the vector space.
         # Here we seed it with broad computer science domains and let the EFE calculation

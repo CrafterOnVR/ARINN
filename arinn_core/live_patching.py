@@ -1,6 +1,9 @@
 import ctypes
 import types
 import threading
+import ast
+import inspect
+import textwrap
 
 class ImmortalCodebase:
     """
@@ -16,6 +19,19 @@ class ImmortalCodebase:
         if not isinstance(func, types.FunctionType):
             raise TypeError("Target must be a Python function.")
         return func.__code__
+
+    def _verify_ast_safety(self, func):
+        """
+        Parses the new function statically. If the AST is invalid or corrupted,
+        it aborts the patch before OS-level swizzling can trigger a segfault.
+        """
+        try:
+            source = textwrap.dedent(inspect.getsource(func))
+            ast.parse(source)
+            return True
+        except Exception as e:
+            print(f"[VAULT-7] AST Validation Failed: {e}")
+            return False
         
     def hot_swap_function(self, target_function, new_function):
         """
@@ -24,6 +40,10 @@ class ImmortalCodebase:
         """
         print(f"[VAULT-7] Initiating OS-Level Pointer Swizzling for: {target_function.__name__}")
         
+        if not self._verify_ast_safety(new_function):
+            print(f"[VAULT-7] FATAL: New function failed AST validation. Aborting hot-swap.")
+            return False
+            
         with self.lock:
             try:
                 # Extract the underlying __code__ objects
