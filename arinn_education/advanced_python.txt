@@ -1,0 +1,6 @@
+A Function is a block of reusable code.
+To define a function use the def keyword.
+A Loop repeats code execution.
+The while loop runs while a condition is true.
+A Class is a blueprint for objects.
+To define a class use the class keyword.

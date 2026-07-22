@@ -1,0 +1,4 @@
+Python is a Language.
+A Language is Code.
+Automation uses Code.
+Efficiency is Automation.

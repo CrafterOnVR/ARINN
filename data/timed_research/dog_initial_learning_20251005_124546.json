@@ -1,0 +1,28 @@
+{
+  "basic_understanding": {
+    "keywords": [],
+    "entities": [],
+    "concepts": []
+  },
+  "key_concepts": [],
+  "fundamental_questions": [
+    "What is dog?",
+    "What are the main components of dog?",
+    "How does dog work?",
+    "What is the history of dog?",
+    "Why is dog important?",
+    "What are the basic principles of dog?",
+    "How is dog defined?",
+    "What are the key characteristics of dog?"
+  ],
+  "knowledge_gaps": [
+    "Detailed mechanisms and processes",
+    "Historical development and evolution",
+    "Current applications and use cases",
+    "Future trends and developments",
+    "Related fields and interdisciplinary connections"
+  ],
+  "definition_answer": "A dog is a domesticated mammal known for its loyalty and companionship to humans.",
+  "learning_timestamp": "2025-10-05T12:45:46.018633",
+  "definition_question": "What is a dog?"
+}

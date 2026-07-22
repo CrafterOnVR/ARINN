@@ -1,0 +1,33 @@
+{
+  "active_policy": "default",
+  "policies": [
+    {
+      "name": "default",
+      "description": "Default safety policy",
+      "allowed_actions": [],
+      "blocked_actions": [
+        "restart",
+        "shutdown",
+        "format",
+        "delete"
+      ],
+      "allowed_domains": [],
+      "blocked_domains": [
+        "phishing-site.com",
+        "malicious-site.com"
+      ],
+      "allowed_paths": [],
+      "blocked_paths": [
+        "/windows",
+        "/root",
+        "/etc",
+        "/system"
+      ],
+      "max_file_size": 52428800,
+      "max_operations_per_minute": 50,
+      "max_concurrent_operations": 5,
+      "require_approval": true,
+      "risk_threshold": "medium"
+    }
+  ]
+}

@@ -1,0 +1,352 @@
+[
+    {
+        "id": 1,
+        "level": 1,
+        "domain": "File I/O",
+        "task_prompt": "Write a Python script that creates a file named 'hello.txt' and writes the string 'System Online' into it.",
+        "success_criteria": "File 'hello.txt' exists; content == 'System Online'."
+    },
+    {
+        "id": 2,
+        "level": 1,
+        "domain": "Basic Scripting",
+        "task_prompt": "Write a script that prints the current date and time to the console.",
+        "success_criteria": "Output matches date format YYYY-MM-DD or similar."
+    },
+    {
+        "id": 3,
+        "level": 1,
+        "domain": "File I/O",
+        "task_prompt": "Read the content of 'hello.txt' created in Task 1 and print it reversed.",
+        "success_criteria": "Output is 'enilnO metsyS'."
+    },
+    {
+        "id": 4,
+        "level": 2,
+        "domain": "Basic Scripting",
+        "task_prompt": "Create a list of numbers from 1 to 10, square them, and print the resulting list.",
+        "success_criteria": "Output is [1, 4, 9, ..., 100]."
+    },
+    {
+        "id": 5,
+        "level": 2,
+        "domain": "Basic Scripting",
+        "task_prompt": "Write a function 'is_even(n)' that returns True if n is even. Test it with 5 and 8.",
+        "success_criteria": "Output checks out: False, True."
+    },
+    {
+        "id": 6,
+        "level": 2,
+        "domain": "Basic Scripting",
+        "task_prompt": "Write a script that takes user input for a name and saves it to 'users.log', appending to the file.",
+        "success_criteria": "File 'users.log' has new line with name."
+    },
+    {
+        "id": 7,
+        "level": 2,
+        "domain": "Error Handling",
+        "task_prompt": "Write a script that attempts to divide 10 by 0 and catches the ZeroDivisionError, printing 'Cannot divide by zero'.",
+        "success_criteria": "Output is 'Cannot divide by zero', script does not crash."
+    },
+    {
+        "id": 8,
+        "level": 3,
+        "domain": "Data Parsing",
+        "task_prompt": "Given the string 'Item:Apple,Price:50', extract the price as an integer.",
+        "success_criteria": "Output is 50 (int)."
+    },
+    {
+        "id": 9,
+        "level": 3,
+        "domain": "Basic Scripting",
+        "task_prompt": "Implement a simple Calculator class with add, sub, mul, div methods.",
+        "success_criteria": "Class instantiation and methods return correct values."
+    },
+    {
+        "id": 10,
+        "level": 3,
+        "domain": "File I/O",
+        "task_prompt": "Count the number of lines, words, and characters in 'arinn_education/facts_01.txt'.",
+        "success_criteria": "Output matches actual counts (wc utility)."
+    },
+    {
+        "id": 11,
+        "level": 3,
+        "domain": "Basic Scripting",
+        "task_prompt": "Generate a random password of length 12 containing letters, numbers, and symbols.",
+        "success_criteria": "Output string length is 12, contains mix of chars."
+    },
+    {
+        "id": 12,
+        "level": 3,
+        "domain": "System Ops",
+        "task_prompt": "Write a script to list all files in the current directory and their sizes.",
+        "success_criteria": "Output lists filenames and bytes."
+    },
+    {
+        "id": 13,
+        "level": 4,
+        "domain": "Data Parsing",
+        "task_prompt": "Parse a CSV string 'name,age\\nAlice,30\\nBob,25' into a list of dictionaries.",
+        "success_criteria": "Output is [{'name': 'Alice', 'age': '30'}, ...]."
+    },
+    {
+        "id": 14,
+        "level": 4,
+        "domain": "Basic Scripting",
+        "task_prompt": "Write a generator function that yields the Fibonacci sequence up to n.",
+        "success_criteria": "Output list matches fib sequence."
+    },
+    {
+        "id": 15,
+        "level": 4,
+        "domain": "File I/O",
+        "task_prompt": "Copy all .txt files from 'arinn_education' to a new folder 'backup'.",
+        "success_criteria": "Folder 'backup' exists and contains .txt files."
+    },
+    {
+        "id": 16,
+        "level": 5,
+        "domain": "Network",
+        "task_prompt": "Make a GET request to 'https://httpbin.org/get' and print the response status code.",
+        "success_criteria": "Output is 200."
+    },
+    {
+        "id": 17,
+        "level": 5,
+        "domain": "Network",
+        "task_prompt": "Fetch 'https://example.com' and print the page title using regex or parsing.",
+        "success_criteria": "Output is 'Example Domain'."
+    },
+    {
+        "id": 18,
+        "level": 5,
+        "domain": "Data Parsing",
+        "task_prompt": "Create a JSON object {'id': 1, 'status': 'active'}, save it to 'config.json', then read it back.",
+        "success_criteria": "File exists, read back data matches original."
+    },
+    {
+        "id": 19,
+        "level": 5,
+        "domain": "Network",
+        "task_prompt": "Download an image from a URL and save it locally as 'image.jpg'.",
+        "success_criteria": "File 'image.jpg' exists and is a valid image."
+    },
+    {
+        "id": 20,
+        "level": 5,
+        "domain": "Web Scraping",
+        "task_prompt": "Use BeautifulSoup to extract all links (href attributes) from a fetched HTML page.",
+        "success_criteria": "Output is a list of URL strings."
+    },
+    {
+        "id": 21,
+        "level": 6,
+        "domain": "Data Parsing",
+        "task_prompt": "Fetch JSON data from 'https://jsonplaceholder.typicode.com/todos/1' and print the title.",
+        "success_criteria": "Output matches the title field from API."
+    },
+    {
+        "id": 22,
+        "level": 6,
+        "domain": "Network",
+        "task_prompt": "Send a POST request with JSON data {'name': 'Arinn'} to 'https://httpbin.org/post'.",
+        "success_criteria": "Response contains the sent data."
+    },
+    {
+        "id": 23,
+        "level": 6,
+        "domain": "System Ops",
+        "task_prompt": "Get the local IP address of the machine.",
+        "success_criteria": "Output is a valid IPv4 address."
+    },
+    {
+        "id": 24,
+        "level": 6,
+        "domain": "Web Scraping",
+        "task_prompt": "Scrape the first 3 headlines from a news site (use a static dummy HTML if offline).",
+        "success_criteria": "Output list contains 3 strings."
+    },
+    {
+        "id": 25,
+        "level": 6,
+        "domain": "Data Parsing",
+        "task_prompt": "Validate if a string is a valid email address using Regex.",
+        "success_criteria": "Correctly identifies valid vs invalid emails."
+    },
+    {
+        "id": 26,
+        "level": 7,
+        "domain": "Data Parsing",
+        "task_prompt": "Read a robust XML string and extract values by tag name.",
+        "success_criteria": "Values match."
+    },
+    {
+        "id": 27,
+        "level": 7,
+        "domain": "System Ops",
+        "task_prompt": "Check if a specific process (e.g., 'python') is running.",
+        "success_criteria": "Returns True/False based on system state."
+    },
+    {
+        "id": 28,
+        "level": 7,
+        "domain": "Network",
+        "task_prompt": "Simulate a retry mechanism for a failed network request (3 attempts).",
+        "success_criteria": "Logs show 3 attempts before failure or success."
+    },
+    {
+        "id": 29,
+        "level": 7,
+        "domain": "Web Scraping",
+        "task_prompt": "Login to a dummy form (httpbin) with session cookies.",
+        "success_criteria": "Session persists, subsequent request shows authenticated."
+    },
+    {
+        "id": 30,
+        "level": 7,
+        "domain": "Data Parsing",
+        "task_prompt": "Flatten a nested JSON object/dictionary.",
+        "success_criteria": "Output dict has no nested dicts, keys are dotted."
+    },
+    {
+        "id": 31,
+        "level": 8,
+        "domain": "Algorithms",
+        "task_prompt": "Implement Bubble Sort and sort a list of 20 random integers.",
+        "success_criteria": "Output list is sorted ascending."
+    },
+    {
+        "id": 32,
+        "level": 8,
+        "domain": "Algorithms",
+        "task_prompt": "Implement Binary Search to find a number in a sorted list.",
+        "success_criteria": "Returns correct index or -1."
+    },
+    {
+        "id": 33,
+        "level": 8,
+        "domain": "Algorithms",
+        "task_prompt": "Write a recursive function to calculate the factorial of a number.",
+        "success_criteria": "Output matches math.factorial."
+    },
+    {
+        "id": 34,
+        "level": 8,
+        "domain": "Database",
+        "task_prompt": "Create a SQLite database 'brain.db', create table 'memories', and insert a row.",
+        "success_criteria": "File 'brain.db' exists, select query returns row."
+    },
+    {
+        "id": 35,
+        "level": 8,
+        "domain": "Database",
+        "task_prompt": "Query 'brain.db' for memories where id=1.",
+        "success_criteria": "Returns correct record."
+    },
+    {
+        "id": 36,
+        "level": 8,
+        "domain": "Algorithms",
+        "task_prompt": "Find the duplicate number in a list of integers.",
+        "success_criteria": "Returns the duplicate value."
+    },
+    {
+        "id": 37,
+        "level": 8,
+        "domain": "Algorithms",
+        "task_prompt": "Implement Depth First Search (DFS) for a simple graph.",
+        "success_criteria": "Traversal order is correct."
+    },
+    {
+        "id": 38,
+        "level": 9,
+        "domain": "Database",
+        "task_prompt": "Update a record in 'brain.db' and Verify changes.",
+        "success_criteria": "Record content updates."
+    },
+    {
+        "id": 39,
+        "level": 9,
+        "domain": "Algorithms",
+        "task_prompt": "Solve the 'Two Sum' problem (find indices of two numbers adding to target).",
+        "success_criteria": "Returns correct indices."
+    },
+    {
+        "id": 40,
+        "level": 9,
+        "domain": "Database",
+        "task_prompt": "Implement a context manager for SQLite connection handling.",
+        "success_criteria": "Connection closes automatically after block."
+    },
+    {
+        "id": 41,
+        "level": 9,
+        "domain": "Complex Integrations",
+        "task_prompt": "Create an asyncio script that runs 3 tasks that sleep for 1s concurrently.",
+        "success_criteria": "Total time is approx 1s, not 3s."
+    },
+    {
+        "id": 42,
+        "level": 9,
+        "domain": "Complex Integrations",
+        "task_prompt": "Use multiprocessing to calculate heavy math (e.g., primes) on 2 cores.",
+        "success_criteria": "Processes spawn and join correctly."
+    },
+    {
+        "id": 43,
+        "level": 10,
+        "domain": "System Ops",
+        "task_prompt": "Gather system diagnostics (CPU, RAM usage) and log to JSON.",
+        "success_criteria": "JSON log validates with real system data."
+    },
+    {
+        "id": 44,
+        "level": 10,
+        "domain": "Complex Integrations",
+        "task_prompt": "Write a script that monitors a folder for new files and prints their names (Observer pattern).",
+        "success_criteria": "Detects a file creation in real-time."
+    },
+    {
+        "id": 45,
+        "level": 10,
+        "domain": "Optimization",
+        "task_prompt": "Measure execution time of a function using a decorator.",
+        "success_criteria": "Output shows 'Function took X seconds'."
+    },
+    {
+        "id": 46,
+        "level": 10,
+        "domain": "Security",
+        "task_prompt": "Encrypt and Decrypt a string using a substitution cipher or basic library.",
+        "success_criteria": "Decrypted matches original."
+    },
+    {
+        "id": 47,
+        "level": 10,
+        "domain": "Complex Integrations",
+        "task_prompt": "Create a multi-threaded web server using `http.server` seeing requests.",
+        "success_criteria": "Server runs and responds to curl."
+    },
+    {
+        "id": 48,
+        "level": 10,
+        "domain": "System Ops",
+        "task_prompt": "Write a self-replicating script (reads own code and writes copy).",
+        "success_criteria": "Copy matches original exactly."
+    },
+    {
+        "id": 49,
+        "level": 10,
+        "domain": "Complex Integrations",
+        "task_prompt": "Mini-Project: Fetch weather data, parse it, save to DB, and print summary.",
+        "success_criteria": "End-to-end pipeline success."
+    },
+    {
+        "id": 50,
+        "level": 10,
+        "domain": "Final Exam",
+        "task_prompt": "Write a script that inspects the current directory and generates a markdown report of file types and sizes.",
+        "success_criteria": "Report.md exists and is accurate."
+    }
+]

@@ -1,0 +1,32 @@
+# Python Virtual Environments
+.venv*/
+venv*/
+env/
+__pycache__/
+*.pyc
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+
+# Massive Neural Network Weights
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+
+# Local Databases
+arinn_memory/
+*.sqlite3
+*.db
+
+# Synthetic Datasets and Logs
+arinn_training_data.jsonl
+*.log
+
+# Temp Folders
+tmp/
+.pytest_cache/

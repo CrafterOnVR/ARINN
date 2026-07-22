@@ -1,0 +1,4 @@
+A Zyloph is a Crystal.
+A Crystal is Shiny.
+The Magma Core contains Zyloph.
+A Miner digs for Zyloph.

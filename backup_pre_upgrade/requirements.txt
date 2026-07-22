@@ -1,0 +1,33 @@
+requests>=2.31.0
+beautifulsoup4>=4.12.2
+lxml>=5.2.1
+readability-lxml>=0.8.1
+duckduckgo_search>=5.3.1
+tenacity>=8.2.3
+tqdm>=4.66.4
+openai>=1.40.0
+python-dateutil>=2.9.0.post0
+pywin32>=306; platform_system == 'Windows'
+
+# Enhanced web capabilities (optional)
+selenium>=4.15.0
+webdriver-manager>=4.0.0
+PySocks>=1.7.1
+websocket-client>=1.6.0
+
+# Advanced automation capabilities
+gitpython>=3.1.40
+watchdog>=4.0.0
+psutil>=5.9.0
+opencv-python>=4.8.0
+pillow>=10.0.0
+pyyaml>=6.0.1
+
+# Desktop GUI
+PyQt6>=6.5.0
+
+# Graph analysis
+networkx>=3.0
+
+# Scientific computing
+scipy>=1.10.0

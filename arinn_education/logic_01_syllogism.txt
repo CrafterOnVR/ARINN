@@ -1,0 +1,4 @@
+Socrates is a Man.
+A Man is Mortal.
+A Mortal is organic.
+Organic is Carbon.
