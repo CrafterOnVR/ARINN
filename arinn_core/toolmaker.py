@@ -58,7 +58,7 @@ class ToolSandbox:
         import tempfile
         
         # 1. Write to temp file
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as tmp:
             tmp.write(code_content)
             # Add strict test harness
             tmp.write("\n\nif __name__ == '__main__':\n")
@@ -104,12 +104,12 @@ class ToolRegistry:
         if not os.path.exists(self.tools_dir):
             os.makedirs(self.tools_dir)
             # Init package
-            with open(os.path.join(self.tools_dir, "__init__.py"), 'w') as f:
+            with open(os.path.join(self.tools_dir, "__init__.py"), 'w', encoding='utf-8') as f:
                 f.write("# ARINN Tools Package\n")
                 
     def install_tool(self, tool_name, code_content):
         file_path = os.path.join(self.tools_dir, f"{tool_name}.py")
-        with open(file_path, 'w') as f:
+        with open(file_path, 'w', encoding='utf-8') as f:
             f.write(code_content)
         return file_path
         

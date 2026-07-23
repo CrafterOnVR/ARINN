@@ -83,7 +83,7 @@ def agent_architect(task):
             return {"status": "error", "agent": "architect", "error": msg}
             
         file_path = os.path.join(safe_path, "architect_draft.py")
-        with open(file_path, "w") as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             f.write(code)
         print(f"[Architect] Dynamic Tool '{tool_name}' verified and safely jailed.")
         return {"status": "success", "agent": "architect", "result": file_path, "tool_name": tool_name}
@@ -101,7 +101,7 @@ def agent_optimizer(code_path, tool_name="execute_logic"):
         
         print(f"[Optimizer] Loading actual AST Engine to mutate {code_path}...")
         
-        with open(code_path, "r") as f:
+        with open(code_path, "r", encoding="utf-8") as f:
             base_code = f.read()
             
         # We define a strict fitness function for the testing_environment
@@ -151,7 +151,7 @@ def agent_optimizer(code_path, tool_name="execute_logic"):
             print(f"[Optimizer] AST Evolution complete! Fitness improved by a factor of {speed_multiplier:.2f}")
             
             # Write the evolved code back
-            with open(code_path, "w") as f:
+            with open(code_path, "w", encoding="utf-8") as f:
                 f.write(best_code)
                 
             return {"status": "success", "agent": "optimizer", "speed_multiplier": speed_multiplier}
