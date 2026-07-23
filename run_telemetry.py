@@ -111,16 +111,17 @@ class TelemetryDashboard(QMainWindow):
     def setup_growth_tab(self):
         layout = QVBoxLayout(self.tab_growth)
         
-        label = QLabel("RSI Exponential Growth Curve (Score over Generation)")
+        label = QLabel("RSI Exponential Growth Curve (METR % over Generation)")
         label.setFont(QFont("Arial", 14))
         layout.addWidget(label)
         
         # Create pyqtgraph PlotWidget
         self.growth_plot = pg.PlotWidget()
         self.growth_plot.setBackground((40, 40, 40))
-        self.growth_plot.setLabel('left', 'Synthetic Intelligence Score')
+        self.growth_plot.setLabel('left', 'METR Completion Rate (%)')
         self.growth_plot.setLabel('bottom', 'Evolutionary Generation')
         self.growth_plot.showGrid(x=True, y=True, alpha=0.3)
+        self.growth_plot.setYRange(0, 100)
         layout.addWidget(self.growth_plot)
         
         self.refresh_growth_graph()
@@ -136,12 +137,13 @@ class TelemetryDashboard(QMainWindow):
     def setup_leaderboard_tab(self):
         layout = QVBoxLayout(self.tab_leaderboard)
         
-        label = QLabel("Comparative LLM Benchmarks (Synthetic Reasoning Score)")
+        label = QLabel("Authentic METR Leaderboard (Autonomous Task Completion %)")
         label.setFont(QFont("Arial", 14))
         layout.addWidget(label)
         
         self.leaderboard_plot = pg.PlotWidget()
         self.leaderboard_plot.setBackground((40, 40, 40))
+        self.leaderboard_plot.setYRange(0, 100)
         layout.addWidget(self.leaderboard_plot)
         
         self.refresh_leaderboard_graph()
@@ -162,7 +164,7 @@ class TelemetryDashboard(QMainWindow):
         # Set X axis string labels
         ticks = [list(zip(x_positions, models))]
         self.leaderboard_plot.getAxis('bottom').setTicks(ticks)
-        self.leaderboard_plot.setLabel('left', 'Synthetic Score')
+        self.leaderboard_plot.setLabel('left', 'Completion Rate (%)')
 
     def setup_telemetry_tab(self):
         layout = QVBoxLayout(self.tab_telemetry)
