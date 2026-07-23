@@ -177,7 +177,7 @@ def agent_examiner(opt_data, task_name):
         if metrics.get("status") != "error":
             import time
             new_percentage = suite.record_new_score(generation=int(time.time()), metr_task_completed=task_name)
-            print(f"[Examiner] Sandbox validation passed. Authentic METR Score updated: {new_percentage:.2f}%")
+            print(f"[Examiner] Sandbox validation passed. Authentic ARINN Score updated: {new_percentage:.2f}%")
             metrics["metr_score"] = new_percentage
         else:
             print(f"[Examiner] Sandbox validation failed. Bypassing dataset logging.")

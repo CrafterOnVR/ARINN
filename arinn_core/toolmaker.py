@@ -26,7 +26,7 @@ class ToolGenerator:
                 
         import random
         seed_variance = random.randint(10000, 99999)
-        system_prompt = f"System Variance Seed: {seed_variance}\nWrite a single robust python module with a central function named {tool_name} to solve: {requirements}. You MUST also write a function named `test_suite()` containing strict `assert` statements to mathematically verify your logic. Be EXTREMELY concise. Write ONLY the raw code. Include no markdown wrapping formatting."
+        system_prompt = f"System Variance Seed: {seed_variance}\nWrite a single robust python module with a central function named {tool_name} to solve: {requirements}. You MUST also write a function named `test_suite()` containing strict `assert` statements to mathematically verify your logic. Be EXTREMELY concise. Write ONLY the raw code. Include no markdown wrapping formatting. If you run out of tokens and need more space to finish your code, append exactly `# REQUEST_MORE_TOKENS` to the very end of your response."
         
         try:
             if neural_core is None:
@@ -47,26 +47,44 @@ class ToolGenerator:
                 except Exception:
                     pass
             
-            # Scale tokens dynamically based on proven intelligence (METR Level)
+            # Scale tokens dynamically based on proven intelligence (ARINN Level)
             # Level 0 gets base tokens. Level 4 gets +2000 tokens.
             try:
                 from arinn_core.benchmark_suite import BenchmarkSuite
                 current_task, _ = BenchmarkSuite().get_metr_status()
                 level = current_task.get("level", 0)
                 max_tokens += (level * 500)
-                print(f"[TOOLMAKER] METR Level {level} detected. Scaling max_tokens to {max_tokens}...")
+                print(f"[TOOLMAKER] ARINN Autonomy Level {level} detected. Scaling max_tokens to {max_tokens}...")
             except Exception:
                 pass
             
             # Physical LLM reasoning execution (blocking thread)
             print(f"[TOOLMAKER] Drafting functional structure for {tool_name} via NeuralCore...")
-            generated_body, _ = neural_core.generate_thought(system_prompt, max_tokens=max_tokens)
+            
+            final_code = ""
+            while True:
+                generated_body, metrics = neural_core.generate_thought(system_prompt, max_tokens=max_tokens)
+                final_code += generated_body
+                
+                # Check if the AI explicitly requested more tokens, or if it got forcefully cut off
+                if "# REQUEST_MORE_TOKENS" in generated_body or metrics.get("tokens_generated", 0) >= max_tokens:
+                    print(f"[TOOLMAKER] Token Horizon Reached (or explicitly requested). Expanding cognitive window and resuming synthesis...")
+                    # Strip out the request tag if it exists
+                    final_code = final_code.replace("# REQUEST_MORE_TOKENS", "").strip()
+                    
+                    # Feed the generated code back in to continue
+                    system_prompt = system_prompt + "\n\n[SYSTEM: Horizon Extended. Continue exactly from where you left off. Do not rewrite the code above.]\n" + generated_body
+                    
+                    # Add another block of tokens to the budget
+                    max_tokens += 500
+                else:
+                    break
             
             # Clean AST output bounds if markdown leaks through
-            if "```python" in generated_body:
-                generated_body = generated_body.split("```python")[1].split("```")[0].strip()
+            if "```python" in final_code:
+                final_code = final_code.split("```python")[1].split("```")[0].strip()
                 
-            return generated_body
+            return final_code
             
         except Exception as e:
             print(f"[TOOLMAKER] NeuralCore unavailable ({e}). Aborting synthesis.")

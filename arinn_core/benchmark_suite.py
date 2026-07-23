@@ -6,7 +6,7 @@ class BenchmarkSuite:
     def __init__(self, history_file="arinn_benchmarks.json"):
         self.history_file = history_file
         
-        # Authentic METR Task Completion Rates (%) for 30-60 min autonomous horizons
+        # Authentic ARINN Horizon Task Completion Rates (%) for 30-60 min autonomous horizons
         self.llm_baselines = {
             "Claude 3.5 Sonnet": 75.0,
             "GPT-4o": 70.0,
@@ -22,7 +22,7 @@ class BenchmarkSuite:
             "Mistral 7B": 3.0
         }
         
-        # METR Time Horizons (Task duration vs 80% Success Rate)
+        # ARINN Time Horizons (Task duration vs 80% Success Rate)
         self.metr_horizons = [
             {"level": 0, "task": "Hello World / Basic Scripting", "human_time": "< 5 min"},
             {"level": 1, "task": "Implement a simple webserver", "human_time": "15-30 min"},

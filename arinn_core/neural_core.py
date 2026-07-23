@@ -144,4 +144,4 @@ class NeuralCore:
         sys.stdout.write(f"\r\033[94m[NEURAL] Forward pass complete! (Final TPS: {tokens_generated/(time.time()-start_time):.1f})\033[0m{' ' * 20}\n")
         sys.stdout.flush()
         
-        return response, {}
+        return response, {"tokens_generated": tokens_generated}

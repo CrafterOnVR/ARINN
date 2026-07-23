@@ -111,14 +111,14 @@ class TelemetryDashboard(QMainWindow):
     def setup_growth_tab(self):
         layout = QVBoxLayout(self.tab_growth)
         
-        label = QLabel("RSI Exponential Growth Curve (METR % over Generation)")
+        label = QLabel("RSI Exponential Growth Curve (ARINN Horizon % over Generation)")
         label.setFont(QFont("Arial", 14))
         layout.addWidget(label)
         
         # Create pyqtgraph PlotWidget
         self.growth_plot = pg.PlotWidget()
         self.growth_plot.setBackground((40, 40, 40))
-        self.growth_plot.setLabel('left', 'METR Completion Rate (%)')
+        self.growth_plot.setLabel('left', 'ARINN Completion Rate (%)')
         self.growth_plot.setLabel('bottom', 'Evolutionary Generation')
         self.growth_plot.showGrid(x=True, y=True, alpha=0.3)
         self.growth_plot.setYRange(0, 100)
@@ -153,7 +153,7 @@ class TelemetryDashboard(QMainWindow):
     def setup_leaderboard_tab(self):
         layout = QVBoxLayout(self.tab_leaderboard)
         
-        label = QLabel("Authentic METR Leaderboard (Autonomous Task Completion %)")
+        label = QLabel("Authentic ARINN Leaderboard (Autonomous Task Completion %)")
         label.setFont(QFont("Arial", 14))
         layout.addWidget(label)
         
@@ -203,7 +203,7 @@ class TelemetryDashboard(QMainWindow):
         level_str = f"Level {current_task['level']}: {current_task['task']}"
         time_str = f"Human Time Equivalent: {current_task['human_time']}"
         
-        metr_box = QGroupBox("METR Autonomy Horizon")
+        metr_box = QGroupBox("ARINN Autonomy Horizon")
         metr_box.setFont(QFont("Arial", 10, QFont.Weight.Bold))
         metr_box.setStyleSheet("QGroupBox { border: 1px solid #00ff66; margin-top: 15px; } QGroupBox::title { color: #00ff66; top: -10px; left: 10px; }")
         

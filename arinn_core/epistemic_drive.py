@@ -68,7 +68,7 @@ class EpistemicDrive:
             print("[EPISTEMIC] FATAL: TitanMemory is heavily fragmented. Coherence check failed.")
             return "Consolidate memory and defragment latent space."
         
-        # First, prioritize unlocking METR autonomy levels
+        # First, prioritize unlocking ARINN autonomy levels
         try:
             from arinn_core.benchmark_suite import BenchmarkSuite
             suite = BenchmarkSuite()
@@ -82,12 +82,12 @@ class EpistemicDrive:
                     break
                     
             if next_task:
-                print(f"[EPISTEMIC] Prioritizing METR Horizon Task to increase autonomy level: '{next_task}'")
+                print(f"[EPISTEMIC] Prioritizing ARINN Horizon Task to increase autonomy level: '{next_task}'")
                 return next_task
         except Exception:
             pass
             
-        # If all METR tasks are completed, drift into pure Epistemic Curiosity
+        # If all ARINN tasks are completed, drift into pure Epistemic Curiosity
         broad_domains = [
             "Quantum State Tomography",
             "Homomorphic Encryption",
