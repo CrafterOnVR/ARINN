@@ -211,7 +211,7 @@ class SwarmOrchestrator:
                 if res_data.get("status") == "error" or arch_data.get("status") == "error":
                     print(f"[Orchestrator] Error in Phase 1. Invoking Debate Arena...\nRes: {res_data}\nArch: {arch_data}")
                     await self.invoke_debate_arena(task)
-                    return
+                    return False
                     
                 print("[Orchestrator] Initial phase complete. Spawning Optimizer and Examiner...")
                 
@@ -228,6 +228,7 @@ class SwarmOrchestrator:
                 exam_data = await exam_future
             
         print("[Orchestrator] Swarm Cycle Complete.")
+        return True
         
     async def invoke_debate_arena(self, issue):
         print("\n[DEBATE ARENA] Spinning up Heuristic Engines for debate...")

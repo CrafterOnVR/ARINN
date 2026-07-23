@@ -73,10 +73,10 @@ async def main():
                 target_goal = "Hello World / Basic Scripting"
             
             # Run the multi-agent swarm cycle on this goal concurrently
-            await orchestrator.start_swarm_cycle(target_goal)
+            success = await orchestrator.start_swarm_cycle(target_goal)
             
             # Log the successful run to the synthetic dataset
-            if synthesizer:
+            if synthesizer and success:
                 # In a full implementation, we'd extract the actual thought trace and best code from the orchestrator
                 # Here we mock the extraction for dataset generation
                 synthesizer.synthesize_success(

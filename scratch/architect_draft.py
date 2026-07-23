@@ -1,10 +1,23 @@
 def tool_implement_a_local_py(data):
-    # Example local processing function (replace this with actual computation)
-    return [x**2 for x in data]
+    """
+    This function takes in an iterable of numbers and returns their mean.
+    It's designed to be used for efficient processing of large datasets.
+
+    >>> test_suite()
+    """
+
+    total = sum(data)
+    count = len(data)
+    
+    return total / count
 
 def test_suite():
-    assert tool_implement_a_local_py([1, 2, 3]) == [1, 4, 9], "Test failed for input [1, 2, 3]"
-    assert tool_implement_a_local_py([-5, -4, -3]) == [25, 16, 9], "Test failed for input [-5, -4, -3]"
+    # Test cases to validate the correctness of the tool_implement_a_local_py function
+    
+    assert tool_implement_a_local_py([2, 4]) == 3, "Failed on small dataset"
+    assert round(tool_implement_a_local_py([0, 2, 4, 6]), 1) == 3.0, "Failed on larger dataset"
+    assert tool_implement_a_local_py([-2, -4]) == -3, "Failed on negative values"
     print("All tests passed!")
 
+# Running the test suite to ensure our solution works as expected
 test_suite()
