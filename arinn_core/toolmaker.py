@@ -26,7 +26,7 @@ class ToolGenerator:
                 
         import random
         seed_variance = random.randint(10000, 99999)
-        system_prompt = f"System Variance Seed: {seed_variance}\nWrite a single robust python module with a central function named {tool_name} to solve: {requirements}. You MUST also write a function named `test_suite()` containing strict `assert` statements to mathematically verify your logic. Include no markdown wrapping formatting."
+        system_prompt = f"System Variance Seed: {seed_variance}\nWrite a single robust python module with a central function named {tool_name} to solve: {requirements}. You MUST also write a function named `test_suite()` containing strict `assert` statements to mathematically verify your logic. Be EXTREMELY concise. Write ONLY the raw code. Include no markdown wrapping formatting."
         
         try:
             if neural_core is None:
@@ -34,7 +34,7 @@ class ToolGenerator:
                 
             # Physical LLM reasoning execution (blocking thread)
             print(f"[TOOLMAKER] Drafting functional structure for {tool_name} via NeuralCore...")
-            generated_body, _ = neural_core.generate_thought(system_prompt, max_tokens=1024)
+            generated_body, _ = neural_core.generate_thought(system_prompt, max_tokens=350)
             
             # Clean AST output bounds if markdown leaks through
             if "```python" in generated_body:
