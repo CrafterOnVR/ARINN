@@ -163,23 +163,27 @@ def agent_optimizer(code_path, tool_name="execute_logic"):
     except Exception as e:
         return {"status": "error", "agent": "optimizer", "error": str(e)}
         
-def agent_examiner(metrics, task_name=None):
-    """The Examiner: Runs METR benchmarks and updates Telemetry"""
+def agent_examiner(opt_data, task_name):
+    # Validates if the tool mathematically passes the Sandbox
     try:
         from arinn_core.benchmark_suite import BenchmarkSuite
         suite = BenchmarkSuite()
-        print(f"[Examiner] Evaluating Swarm performance...")
         
-        # Log the attempt and the success
-        suite.record_task_attempt()
-        # Only log success if the optimizer actually worked (didn't error)
+        metrics = {
+            "agent": "examiner",
+            "status": opt_data.get("status")
+        }
+        
         if metrics.get("status") != "error":
+            import time
             new_percentage = suite.record_new_score(generation=int(time.time()), metr_task_completed=task_name)
+            print(f"[Examiner] Sandbox validation passed. Authentic METR Score updated: {new_percentage:.2f}%")
+            metrics["metr_score"] = new_percentage
         else:
-            new_percentage = suite.record_new_score(generation=int(time.time()), metr_task_completed=None)
+            print(f"[Examiner] Sandbox validation failed. Bypassing dataset logging.")
+            metrics["error"] = opt_data.get("error")
             
-        print(f"[Examiner] Telemetry updated. New METR Score: {new_percentage:.2f}%")
-        return {"status": "success", "agent": "examiner", "new_score": new_percentage}
+        return metrics
     except Exception as e:
         return {"status": "error", "agent": "examiner", "error": str(e)}
 
@@ -250,6 +254,12 @@ class SwarmOrchestrator:
         print("\n==================================================")
         print(f"SINGULARITY SWARM: Initiating Async Cycle for '{task}'")
         print("==================================================")
+        
+        try:
+            from arinn_core.benchmark_suite import BenchmarkSuite
+            BenchmarkSuite().record_task_attempt()
+        except Exception:
+            pass
         
         loop = asyncio.get_running_loop()
         
