@@ -28,7 +28,7 @@ class NeuralCore:
         
         try:
             self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-            self.model = AutoModelForCausalLM.from_pretrained(model_id)
+            self.model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float16)
             
             adapter_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "models", "arinn_lora_weights", "arinn_latest_adapter"))
             stable_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "models", "arinn_lora_weights", "arinn_previous_stable"))
