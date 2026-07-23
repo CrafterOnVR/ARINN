@@ -68,9 +68,26 @@ class EpistemicDrive:
             print("[EPISTEMIC] FATAL: TitanMemory is heavily fragmented. Coherence check failed.")
             return "Consolidate memory and defragment latent space."
         
-        # In a full implementation, we would extract bounding boxes of the vector space.
-        # Here we seed it with broad computer science domains and let the EFE calculation
-        # rank which one it is most ignorant about.
+        # First, prioritize unlocking METR autonomy levels
+        try:
+            from arinn_core.benchmark_suite import BenchmarkSuite
+            suite = BenchmarkSuite()
+            current_task, completed = suite.get_metr_status()
+            
+            # Find the next uncompleted task
+            next_task = None
+            for h in suite.metr_horizons:
+                if h["task"] not in completed:
+                    next_task = h["task"]
+                    break
+                    
+            if next_task:
+                print(f"[EPISTEMIC] Prioritizing METR Horizon Task to increase autonomy level: '{next_task}'")
+                return next_task
+        except Exception:
+            pass
+            
+        # If all METR tasks are completed, drift into pure Epistemic Curiosity
         broad_domains = [
             "Quantum State Tomography",
             "Homomorphic Encryption",
