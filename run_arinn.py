@@ -97,17 +97,19 @@ async def main():
                     if getattr(fine_tuner, "is_training_active", False):
                         print(f"\n[NIGHT CYCLE] SKIPPED. Previous neural training is still in progress. Gathering more data for the next cycle instead...\n")
                     else:
-                        print(f"\n[NIGHT CYCLE] SPANNING ASYNC CORTEX UPGRADE. Swarm execution will continue uninterrupted!\n")
+                        print(f"\n[NIGHT CYCLE] INITIATING CORTEX UPGRADE. Swarm execution will pause to dedicate 100% of GPU compute to training...\n")
                         
-                        def run_training_safely(path):
+                        async def run_training_safely(path):
                             fine_tuner.is_training_active = True
                             try:
-                                fine_tuner.trigger_night_cycle(path)
+                                # Grab the mutation lock to prevent the Swarm from concurrently hammering the GPU
+                                async with orchestrator.mutation_lock:
+                                    await asyncio.to_thread(fine_tuner.trigger_night_cycle, path)
                             finally:
                                 fine_tuner.is_training_active = False
                                 
-                        # Launch in a background thread so the Swarm event loop never freezes
-                        asyncio.create_task(asyncio.to_thread(run_training_safely, dataset_path))
+                        # Launch the training task, which will safely block the Swarm via the lock
+                        asyncio.create_task(run_training_safely(dataset_path))
                 else:
                     print("[NIGHT CYCLE] Skipped. No training data generated today.")
 
