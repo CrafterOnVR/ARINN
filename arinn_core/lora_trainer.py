@@ -208,13 +208,28 @@ class ARINNFineTuner:
             
             print("\n[LoRA] Training Complete! Synthesizing new Neural Weights...")
             final_path = os.path.join(self.output_dir, "arinn_latest_adapter")
+            temp_path = os.path.join(self.output_dir, "arinn_temp_adapter")
+            stable_path = os.path.join(self.output_dir, "arinn_previous_stable")
             
             # DirectML tensors are opaque to the OS serializer, so we must pull the weights back to system RAM first
             if dml_device is not None:
                 print("[LoRA] Offloading mutated weights from AMD VRAM to System RAM for serialization...")
                 model = model.to("cpu")
                 
-            model.save_pretrained(final_path)
+            print(f"[LoRA] Serializing to temporary buffer: {temp_path}")
+            model.save_pretrained(temp_path)
+            
+            import shutil
+            # Atomic rolling swap
+            print("[LoRA] Performing atomic rolling swap of neural states...")
+            if os.path.exists(stable_path):
+                try:
+                    shutil.rmtree(stable_path)
+                except Exception:
+                    pass
+            if os.path.exists(final_path):
+                os.rename(final_path, stable_path)
+            os.rename(temp_path, final_path)
             
             print(f"[NIGHT CYCLE] SUCCESS. Brain upgraded. New weights saved to {final_path}")
             

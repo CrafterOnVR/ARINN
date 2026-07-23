@@ -31,9 +31,22 @@ class NeuralCore:
             self.model = AutoModelForCausalLM.from_pretrained(model_id)
             
             adapter_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "models", "arinn_lora_weights", "arinn_latest_adapter"))
+            stable_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "models", "arinn_lora_weights", "arinn_previous_stable"))
+            
             if os.path.exists(adapter_path):
                 print(f"[NEURAL] Found Swarm-trained LoRA adapter! Injecting weights from: {adapter_path}")
-                self.model = PeftModel.from_pretrained(self.model, adapter_path)
+                try:
+                    self.model = PeftModel.from_pretrained(self.model, adapter_path)
+                except Exception as lora_e:
+                    print(f"[NEURAL] WARNING: latest_adapter corrupted ({lora_e}). Attempting fallback to previous_stable...")
+                    if os.path.exists(stable_path):
+                        self.model = PeftModel.from_pretrained(self.model, stable_path)
+                        print("[NEURAL] Successfully loaded previous_stable adapter.")
+                    else:
+                        print("[NEURAL] No stable fallback found. Running on baseline weights.")
+            elif os.path.exists(stable_path):
+                print(f"[NEURAL] latest_adapter missing. Found previous_stable. Injecting weights from: {stable_path}")
+                self.model = PeftModel.from_pretrained(self.model, stable_path)
             else:
                 print("[NEURAL] No LoRA adapter found. Running on baseline weights.")
                 
@@ -64,6 +77,9 @@ class NeuralCore:
                 **inputs,
                 max_new_tokens=max_tokens,
                 do_sample=False,
+                temperature=None,
+                top_p=None,
+                top_k=None,
                 pad_token_id=self.tokenizer.eos_token_id
             )
             
