@@ -130,9 +130,19 @@ class TelemetryDashboard(QMainWindow):
         x, y = self.benchmark.get_historical_growth()
         self.growth_plot.clear()
         
+        if not x:
+            self.growth_plot.setYRange(0, 100, padding=0)
+            self.growth_plot.setXRange(0, 5, padding=0)
+            return
+            
         # Plot the exponential curve
         pen = pg.mkPen(color=(0, 255, 100), width=3)
         self.growth_plot.plot(x, y, pen=pen, symbol='o', symbolSize=8, symbolBrush=(0, 255, 100))
+        
+        # Enforce strict bounds so a single point doesn't break the axes
+        self.growth_plot.setYRange(0, 100, padding=0)
+        if len(x) == 1:
+            self.growth_plot.setXRange(0, 5, padding=0)
 
     def setup_leaderboard_tab(self):
         layout = QVBoxLayout(self.tab_leaderboard)
