@@ -108,8 +108,8 @@ async def main():
                             finally:
                                 fine_tuner.is_training_active = False
                                 
-                        # Launch the training task, which will safely block the Swarm via the lock
-                        asyncio.create_task(run_training_safely(dataset_path))
+                        # Block the main loop to safely dedicate 100% of the GPU
+                        await run_training_safely(dataset_path)
                 else:
                     print("[NIGHT CYCLE] Skipped. No training data generated today.")
 
