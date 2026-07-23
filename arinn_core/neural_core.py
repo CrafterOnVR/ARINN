@@ -80,6 +80,7 @@ class NeuralCore:
                 temperature=None,
                 top_p=None,
                 top_k=None,
+                repetition_penalty=1.15,
                 pad_token_id=self.tokenizer.eos_token_id
             )
             
