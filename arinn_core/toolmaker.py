@@ -94,12 +94,32 @@ class ToolSandbox:
     """
     Safe execution environment for verifying new tools.
     """
-    def test_tool(self, code_content, test_cases):
+    def test_tool(self, tool_name, code_content, test_cases):
         """
-        Writes code to a temp file and runs it against test cases.
+        Runs the generated code in a restricted sandbox.
         test_cases: list of (input_args, expected_output)
         """
         import tempfile
+        import ast
+        
+        # Prevent Reward Hacking: Parse AST to ensure test_suite() actually calls the tool
+        try:
+            tree = ast.parse(code_content)
+            test_suite_node = next((node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == 'test_suite'), None)
+            
+            if not test_suite_node:
+                return False, "Validation Failed: You must implement a test_suite() function."
+                
+            calls_tool = any(
+                isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == tool_name
+                for node in ast.walk(test_suite_node)
+            )
+            
+            if not calls_tool:
+                return False, f"Validation Failed (Reward Hacking Detected): Your test_suite() must explicitly invoke '{tool_name}'."
+                
+        except SyntaxError as e:
+            return False, f"Validation Failed: Syntax Error in generated code - {e}"
         
         # 1. Write to temp file
         with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as tmp:

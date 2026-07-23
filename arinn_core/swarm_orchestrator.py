@@ -77,7 +77,7 @@ def agent_architect(task):
         )
         
         # Verify the generated code in the Sandbox
-        is_valid, msg = sandbox.test_tool(code, [])
+        is_valid, msg = sandbox.test_tool(tool_name, code, [])
         if not is_valid:
             print(f"[Architect] Generated code failed Sandbox verification: {msg}")
             return {"status": "error", "agent": "architect", "error": msg}
