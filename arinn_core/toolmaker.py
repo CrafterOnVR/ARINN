@@ -32,9 +32,24 @@ class ToolGenerator:
             if neural_core is None:
                 raise RuntimeError("NeuralCore offline")
                 
+            import json
+            import os
+            
+            # Dynamically fetch token limit from UI Configuration
+            max_tokens = 350
+            config_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "arinn_runtime_config.json"))
+            if os.path.exists(config_path):
+                try:
+                    with open(config_path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                        if "max_tokens" in data:
+                            max_tokens = int(data["max_tokens"])
+                except Exception:
+                    pass
+            
             # Physical LLM reasoning execution (blocking thread)
             print(f"[TOOLMAKER] Drafting functional structure for {tool_name} via NeuralCore...")
-            generated_body, _ = neural_core.generate_thought(system_prompt, max_tokens=350)
+            generated_body, _ = neural_core.generate_thought(system_prompt, max_tokens=max_tokens)
             
             # Clean AST output bounds if markdown leaks through
             if "```python" in generated_body:

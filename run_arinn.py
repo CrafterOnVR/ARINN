@@ -24,6 +24,17 @@ async def main():
     print("[SYSTEM] Hard-Lock Path Jail: ACTIVE")
     print("[SYSTEM] METR Horizon Examiner: ACTIVE\n")
     
+    import subprocess
+    try:
+        ui_script = os.path.join(os.path.dirname(__file__), "arinn_core", "ui_token_manager.py")
+        if os.path.exists(ui_script):
+            subprocess.Popen([sys.executable, ui_script])
+            print("[SYSTEM] Dynamic Token Manager UI launched in background.")
+    except Exception as e:
+        print(f"[WARNING] Could not launch Token Manager UI: {e}")
+        
+
+    
     orchestrator = SwarmOrchestrator()
     
     # Initialize MemoryManager and EpistemicDrive for Curiosity-Driven Goal Autoinitialize
