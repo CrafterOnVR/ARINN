@@ -154,7 +154,7 @@ def agent_optimizer(code_path, tool_name="execute_logic"):
             with open(code_path, "w", encoding="utf-8") as f:
                 f.write(best_code)
                 
-            return {"status": "success", "agent": "optimizer", "speed_multiplier": speed_multiplier}
+            return {"status": "success", "agent": "optimizer", "speed_multiplier": speed_multiplier, "final_code_path": code_path}
             
         except Exception as eng_e:
             print(f"[Optimizer] Genetic Engine Error: {eng_e}")
@@ -182,6 +182,62 @@ def agent_examiner(metrics, task_name=None):
         return {"status": "success", "agent": "examiner", "new_score": new_percentage}
     except Exception as e:
         return {"status": "error", "agent": "examiner", "error": str(e)}
+
+def agent_executor(code_path, tool_name, task):
+    """The Executor: Installs the optimized tool and executes it on the task."""
+    try:
+        from arinn_core.cyber_gauntlet import CyberGauntlet
+        # Executor gets network access to run the tool, but we monitor it
+        safe_path = os.path.join(PROJECT_ROOT, "scratch")
+        gauntlet = CyberGauntlet(safe_zone=safe_path, network_allowed=True, cpu_threshold=95.0)
+        gauntlet.lock_agent()
+        
+        print(f"[Executor] Preparing to install and utilize tool '{tool_name}'...")
+        from arinn_core.toolmaker import ToolRegistry
+        registry = ToolRegistry()
+        
+        with open(code_path, "r", encoding="utf-8") as f:
+            code_content = f.read()
+            
+        print(f"[Executor] Installing '{tool_name}' into ToolRegistry...")
+        installed_path = registry.install_tool(tool_name, code_content)
+        
+        print(f"[Executor] Loading '{tool_name}' into active memory...")
+        tool_func = registry.load_tool(tool_name)
+        if not tool_func:
+            return {"status": "error", "agent": "executor", "error": f"Failed to load module {tool_name}"}
+            
+        print(f"[Executor] Synthesizing execution parameters via NeuralCore...")
+        from arinn_core.neural_core import NeuralCore
+        neural_core = NeuralCore()
+        
+        system_prompt = f"You are the Swarm Executor. You have a tool named `{tool_name}`. Your task is: {task}. Extract the exact required input variables and output them as a strict JSON dictionary. For example: {{\"arg1\": 5, \"arg2\": \"test\"}}. Output ONLY JSON."
+        
+        args = {}
+        try:
+            generated_body, _ = neural_core.generate_thought(system_prompt, max_tokens=150)
+            if "```json" in generated_body:
+                generated_body = generated_body.split("```json")[1].split("```")[0].strip()
+            elif "{" in generated_body and "}" in generated_body:
+                generated_body = "{" + generated_body.split("{")[1].split("}")[0] + "}"
+                
+            import json
+            args = json.loads(generated_body)
+            print(f"[Executor] NeuralCore decided on inputs: {args}")
+        except Exception as e:
+            print(f"[Executor] NeuralCore parameter inference failed ({e}). Proceeding with no arguments.")
+            
+        print(f"[Executor] Executing dynamically loaded tool '{tool_name}'...")
+        try:
+            result = tool_func(**args)
+            print(f"[Executor] Tool execution successful! Result: {str(result)[:200]}")
+            return {"status": "success", "agent": "executor", "result": result}
+        except Exception as e:
+            print(f"[Executor] Tool execution failed during runtime: {e}")
+            return {"status": "error", "agent": "executor", "error": str(e)}
+            
+    except Exception as e:
+        return {"status": "error", "agent": "executor", "error": str(e)}
 
 # --- The Orchestrator ---
 
@@ -226,6 +282,16 @@ class SwarmOrchestrator:
                 # Phase 3: Examiner validates
                 exam_future = loop.run_in_executor(pool, agent_examiner, opt_data, task)
                 exam_data = await exam_future
+                
+                # Phase 4: Executor utilizes the tool (only if optimizer succeeded)
+                if opt_data.get("status") != "error" and "final_code_path" in opt_data:
+                    print("[Orchestrator] Examiner validation complete. Launching Executor for tool utilization...")
+                    exec_future = loop.run_in_executor(pool, agent_executor, opt_data["final_code_path"], arch_data.get("tool_name", "execute_logic"), task)
+                    exec_data = await exec_future
+                    if exec_data.get("status") == "error":
+                        print(f"[Orchestrator] Executor Error: {exec_data.get('error')}")
+                    else:
+                        print(f"[Orchestrator] Executor successfully utilized tool!")
             
         print("[Orchestrator] Swarm Cycle Complete.")
         return True
