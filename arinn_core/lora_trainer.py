@@ -164,7 +164,7 @@ class ARINNFineTuner:
                 optimizer = torch.optim.AdamW(model.parameters(), lr=2e-4)
                 
                 model.train()
-                max_steps = 100
+                max_steps = 1000
                 progress_bar = tqdm(total=max_steps)
                 step = 0
                 
@@ -190,7 +190,7 @@ class ARINNFineTuner:
                     per_device_train_batch_size=2,
                     gradient_accumulation_steps=4,
                     warmup_steps=5,
-                    max_steps=100, 
+                    max_steps=1000, 
                     learning_rate=2e-4,
                     fp16=has_cuda,
                     logging_steps=10,

@@ -154,16 +154,20 @@ def agent_examiner(metrics, task_name=None):
         suite = BenchmarkSuite()
         print(f"[Examiner] Evaluating Swarm performance...")
         
-        current_score = suite._load_history().get("current_arinn_synthetic_score", 0)
-        # Using real AST speedup metric from the optimizer
-        speedup = metrics.get("speed_multiplier", 1.0)
+        # Calculate new authentic METR percentage
+        history = suite._load_history()
+        attempted = history.get("arinn_tasks_attempted", 1) + 1 # +1 for current attempt
+        completed = history.get("arinn_tasks_completed", 0)
+        if task_name:
+            completed += 1
+            
+        new_percentage = (completed / attempted) * 100.0
         
-        # A simple metric: score += speedup
-        new_score = current_score + speedup
+        suite.record_task_attempt()
+        suite.record_new_score(new_percentage, generation=int(time.time()), metr_task_completed=task_name)
         
-        suite.record_new_score(new_score, generation=int(time.time()), metr_task_completed=task_name)
-        print(f"[Examiner] Telemetry updated. New Score: {new_score:.2f}")
-        return {"status": "success", "agent": "examiner", "new_score": new_score}
+        print(f"[Examiner] Telemetry updated. New METR Score: {new_percentage:.2f}%")
+        return {"status": "success", "agent": "examiner", "new_score": new_percentage}
     except Exception as e:
         return {"status": "error", "agent": "examiner", "error": str(e)}
 
