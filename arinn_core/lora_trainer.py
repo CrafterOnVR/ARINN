@@ -22,7 +22,7 @@ class ARINNFineTuner:
         Loads the dataset and triggers a LoRA fine-tuning run.
         """
         print("\n" + "="*50)
-        print("🌙 [NIGHT CYCLE] INITIATING ARINN CORTEX UPGRADE")
+        print("[NIGHT CYCLE] INITIATING ARINN CORTEX UPGRADE")
         print("="*50)
         print(f"[LoRA] Target Dataset: {dataset_path}")
         print(f"[LoRA] Base Model: {self.model_id}")

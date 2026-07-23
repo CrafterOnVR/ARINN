@@ -56,8 +56,8 @@ class CyberGauntlet:
             if not self.network_allowed and (event == "socket.connect" or event == "urllib.Request"):
                 # Exception: Allow HuggingFace and common CDN ports for model downloading 
                 # (NeuralCore needs to fetch weights securely via HTTPS)
-                if event == "socket.connect" and len(args) > 0 and isinstance(args[0], tuple) and len(args[0]) >= 2:
-                    ip, port = args[0][0], args[0][1]
+                if event == "socket.connect" and len(args) > 1 and isinstance(args[1], tuple) and len(args[1]) >= 2:
+                    ip, port = args[1][0], args[1][1]
                     if port == 443:
                         return # Allow secure model downloads
                 
