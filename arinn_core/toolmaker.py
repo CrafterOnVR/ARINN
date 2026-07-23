@@ -47,6 +47,17 @@ class ToolGenerator:
                 except Exception:
                     pass
             
+            # Scale tokens dynamically based on proven intelligence (METR Level)
+            # Level 0 gets base tokens. Level 4 gets +2000 tokens.
+            try:
+                from arinn_core.benchmark_suite import BenchmarkSuite
+                current_task, _ = BenchmarkSuite().get_metr_status()
+                level = current_task.get("level", 0)
+                max_tokens += (level * 500)
+                print(f"[TOOLMAKER] METR Level {level} detected. Scaling max_tokens to {max_tokens}...")
+            except Exception:
+                pass
+            
             # Physical LLM reasoning execution (blocking thread)
             print(f"[TOOLMAKER] Drafting functional structure for {tool_name} via NeuralCore...")
             generated_body, _ = neural_core.generate_thought(system_prompt, max_tokens=max_tokens)
