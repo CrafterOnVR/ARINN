@@ -65,7 +65,7 @@ class ToolSandbox:
             tmp.write("        test_suite()\n")
             tmp.write("        print('TESTS_PASSED')\n")
             tmp.write("    except Exception as e:\n")
-            tmp.write("        sys.stderr.write(str(e))\\n")
+            tmp.write("        sys.stderr.write(str(e) + '\\n')\n")
             tmp.write("        sys.exit(1)\n")
             tmp_path = tmp.name
             
