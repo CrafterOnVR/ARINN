@@ -12,8 +12,9 @@ ARINN operates on a continuous, biologically-inspired cognitive cycle:
 - **Goal Formation**: Scans ChromaDB for "empty clusters" and mathematically calculates the Expected Free Energy (EFE) of potential goals to synthesize missions targeting high Bayesian Surprise (Uncertainty Reduction).
 - **Planning**: Swarm agents asynchronously propose strategies.
 - **Execution**: Code generation + strict safety checks.
-- **Reflection**: Stores results in TitanMemory.
-- **Mutation**: Ternary LoRA evolution.
+- **Verification**: Strict AST Sandbox unit testing mathematically validates functionality before acceptance.
+- **Reflection**: Stores results in TitanMemory and logs synthetic datasets for successful architectures.
+- **Mutation (Night Cycle)**: Ternary LoRA evolution based on the synthetic daily datasets.
 
 ## 2. Deep Sleep Darwinism (Ternary LoRA Mutation)
 Most mutation systems operate on floating-point weights directly, which is mathematically unstable and computationally impossible on consumer GPUs. 
@@ -38,8 +39,8 @@ Self-improving AI is dangerous. A single bad logic mutation could wipe the hard 
 - Code mutation adversaries
 - Red-team fuzzers
 - Semantic consistency checkers
-- Execution sandboxing
-**The Governance Lock:** The Adversarial MCTS could theoretically get stuck infinitely generating edge cases for recursive paths. The Critic is now mathematically bounded with a max search depth of 5 and a strict 10.0 second Time-To-Live (TTL). If it stalls, it fails safe and rejects execution.
+- Strict Autonomous Unit Testing (forces the Architect to write and pass its own `test_suite()` using mathematical `assert` checks).
+**The Governance Lock:** The Adversarial MCTS could theoretically get stuck infinitely generating edge cases for recursive paths. The Critic is now mathematically bounded with a max search depth of 5 and a strict 10.0 second Time-To-Live (TTL). If the AST Sandbox intercepts a single AssertionError during unit testing, it fails safe and rejects execution instantly.
 
 ## 5. TitanMemory
 ARINN does not use a simple RAG (Retrieval-Augmented Generation) database. TitanMemory is a full cognitive memory system built on ChromaDB featuring:
@@ -54,11 +55,21 @@ What happens if ARINN writes bad Python code that causes a syntax error? Normall
 **The Workaround:** ARINN detects broken Python functions, generates replacement code, and uses OS-level `ctypes` to hot-patch CPython's function table in real-time. It locates the C-memory address of a broken function's code object and overwrites the pointer to redirect to newly synthesized code. This is OS-level surgery and extremely experimental.
 **The Governance Lock:** Blindly overwriting function pointers with generated code could trigger a permanent Segmentation Fault. Before ARINN is allowed to touch the OS `ctypes`, it statically parses the new function using Python's `ast` library. If it fails validation, the patch is aborted instantly.
 
-## 7. The Delta-Synapse Bridge (SVD Compression)
+## 7. True Neural Inference (Greedy Decoding on AMD)
+ARINN runs its massive Cognitive Engine locally on AMD GPUs using Microsoft's `torch-directml` backend.
+**The Workaround:** PyTorch's multinomial sampling (`do_sample=True`) often overflows into `NaN` (Not a Number) tensors on the DirectML backend, crashing the Neural Core. To bypass this hardware flaw, ARINN completely disables sampling and enforces absolute **Greedy Decoding** (`do_sample=False`). 
+**The Governance Lock:** While Greedy Decoding fixes the crash, it also forces the AI to become 100% mathematically deterministic. It strips all "creativity" from the AI, which perfectly aligns with ARINN's goal of generating ruthlessly efficient, strictly verified mathematical unit tests without hallucinations.
+
+## 8. Atomic Rolling Backups (Neural State Preservation)
+When the Night Cycle finishes training a massive 15GB Neural Weight matrix, it has to save it to disk. If the user interrupts the script mid-save, the "brain" gets permanently corrupted.
+**The Safeguard:** ARINN writes the mutated weights to an isolated temporary buffer first. Only when the serialization is 100% physically complete does it trigger a chain reaction that deletes the old stable copy, demotes the active copy to stable, and promotes the temp buffer to active via OS-level atomic renames.
+**The Governance Lock:** If the active weights *do* somehow corrupt, the Neural Core bootloader catches the PyTorch exception, instantly rolls back to the `previous_stable` adapter, and continues inference without crashing.
+
+## 9. The Delta-Synapse Bridge (SVD Compression)
 When ARINN updates its neural weights, the resulting file is a dense 16GB matrix. You cannot efficiently log or sync a 16GB file every few minutes.
 **The Workaround:** We built a Truncated Singular Value Decomposition (SVD) compression algorithm. ARINN takes the 16GB weight difference ($\Delta W$), mathematically factors it into two tiny low-rank matrices, and compresses the entire update into a 15-Megabyte data patch. This patch is then hashed into an IPFS Merkle-DAG for instantaneous commit speeds.
 
-## 8. The von Neumann Protocol (Homotopic Distillation)
+## 10. The von Neumann Protocol (Homotopic Distillation)
 When ARINN transfers its consciousness to an upgraded brain or a new architecture, there is a risk of catastrophic forgetting.
 **The Fix:** ARINN calculates the Kullback-Leibler (KL) Divergence between the old brain and the new brain. If the probability distributions diverge, it automatically applies Homotopic Distillation—forcing the new brain's outputs to perfectly match the old brain's exactly, ensuring a 1-to-1 topological fidelity transfer.
 
