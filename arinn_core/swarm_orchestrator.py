@@ -86,11 +86,11 @@ def agent_architect(task):
         with open(file_path, "w") as f:
             f.write(code)
         print(f"[Architect] Dynamic Tool '{tool_name}' verified and safely jailed.")
-        return {"status": "success", "agent": "architect", "result": file_path}
+        return {"status": "success", "agent": "architect", "result": file_path, "tool_name": tool_name}
     except Exception as e:
         return {"status": "error", "agent": "architect", "error": str(e)}
 
-def agent_optimizer(code_path):
+def agent_optimizer(code_path, tool_name="execute_logic"):
     """The Optimizer: Fuzzes the code using real AST mutations"""
     try:
         from arinn_core.cyber_gauntlet import CyberGauntlet
@@ -104,15 +104,28 @@ def agent_optimizer(code_path):
         with open(code_path, "r") as f:
             base_code = f.read()
             
-        # We define a basic fitness function for the testing_environment
+        # We define a strict fitness function for the testing_environment
         def evaluate_speed(namespace):
             import time
             start = time.perf_counter()
             try:
-                # We expect the mutated code to still define execute_logic
-                namespace['execute_logic']()
-            except Exception:
-                return 0.1 # Penalty for breaking the code
+                # Dynamically execute the generated tool name
+                if tool_name not in namespace:
+                    return 0.0 # Instant failure, function not generated!
+                    
+                func = namespace[tool_name]
+                
+                # Attempt to execute the function.
+                # If it requires arguments and fails, we catch TypeError but penalize heavily.
+                try:
+                    func()
+                except TypeError:
+                    # It exists but expects arguments. We can't strictly evaluate speed, 
+                    # but it is mathematically valid syntax.
+                    return 0.5 
+            except Exception as e:
+                return 0.0 # True error during execution
+                
             duration = time.perf_counter() - start
             # Faster is better, so fitness is inverse of duration
             return 1.0 / (duration + 0.0001)
@@ -124,11 +137,15 @@ def agent_optimizer(code_path):
             testing_environment = ASTCrucible(evaluate_speed)
             engine = GeneticCodeEngine(population_size=5, mutation_rate=0.3)
             
+            # If baseline is 0.0, the code is fundamentally broken and cannot be optimized!
+            baseline = testing_environment.execute_and_score(base_code)
+            if baseline == 0.0:
+                 return {"status": "error", "agent": "optimizer", "error": "Baseline fitness is 0.0 (Code completely broken or function missing)."}
+                 
             # Evolve for just a few generations so we don't freeze the system
             best_code, best_fitness = engine.evolve(base_code, testing_environment, generations=3)
             
             # Calculate speed multiplier
-            baseline = testing_environment.execute_and_score(base_code)
             speed_multiplier = (best_fitness / baseline) if baseline > 0 else 1.0
             
             print(f"[Optimizer] AST Evolution complete! Fitness improved by a factor of {speed_multiplier:.2f}")
@@ -141,8 +158,7 @@ def agent_optimizer(code_path):
             
         except Exception as eng_e:
             print(f"[Optimizer] Genetic Engine Error: {eng_e}")
-            # Fallback
-            return {"status": "success", "agent": "optimizer", "speed_multiplier": 1.05}
+            return {"status": "error", "agent": "optimizer", "error": str(eng_e)}
             
     except Exception as e:
         return {"status": "error", "agent": "optimizer", "error": str(e)}
@@ -200,7 +216,7 @@ class SwarmOrchestrator:
                 print("[Orchestrator] Initial phase complete. Spawning Optimizer and Examiner...")
                 
                 # Phase 2: Optimize the drafted code
-                opt_future = loop.run_in_executor(pool, agent_optimizer, arch_data["result"])
+                opt_future = loop.run_in_executor(pool, agent_optimizer, arch_data["result"], arch_data.get("tool_name", "execute_logic"))
                 opt_data = await opt_future
                 
                 if opt_data.get("status") == "error":
