@@ -24,7 +24,7 @@ class ToolGenerator:
             except ImportError:
                 neural_core = None
                 
-        system_prompt = f"Write a single robust python module with a central function named {tool_name} to solve: {requirements}. Include no markdown wrapping formatting."
+        system_prompt = f"Write a single robust python module with a central function named {tool_name} to solve: {requirements}. You MUST also write a function named `test_suite()` containing strict `assert` statements to mathematically verify your logic. Include no markdown wrapping formatting."
         
         try:
             if neural_core is None:
@@ -58,13 +58,15 @@ class ToolSandbox:
         # 1. Write to temp file
         with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as tmp:
             tmp.write(code_content)
-            # Add test harness
+            # Add strict test harness
             tmp.write("\n\nif __name__ == '__main__':\n")
             tmp.write("    import sys\n")
-            tmp.write("    import json\n")
-            tmp.write("    # Read args from stdin or simple harness\n")
-            tmp.write("    # For verification, we just print the function object existence\n")
-            tmp.write("    print('LOADED')\n")
+            tmp.write("    try:\n")
+            tmp.write("        test_suite()\n")
+            tmp.write("        print('TESTS_PASSED')\n")
+            tmp.write("    except Exception as e:\n")
+            tmp.write("        sys.stderr.write(str(e))\\n")
+            tmp.write("        sys.exit(1)\n")
             tmp_path = tmp.name
             
         # 2. Run in subprocess
@@ -82,10 +84,10 @@ class ToolSandbox:
             except:
                 pass
                 
-            if result.returncode == 0 and "LOADED" in result.stdout:
-                return True, "Syntax Valid, Load Successful"
+            if result.returncode == 0 and "TESTS_PASSED" in result.stdout:
+                return True, "Logical Verification Valid, Tests Passed"
             else:
-                return False, f"Execution Failed: {result.stderr}"
+                return False, f"Logical Verification Failed: {result.stderr or result.stdout}"
                 
         except Exception as e:
             return False, f"Sandbox Error: {e}"
