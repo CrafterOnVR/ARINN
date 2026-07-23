@@ -37,16 +37,22 @@ class NeuralCore:
                 print(f"[NEURAL] Found Swarm-trained LoRA adapter! Injecting weights from: {adapter_path}")
                 try:
                     self.model = PeftModel.from_pretrained(self.model, adapter_path)
+                    print("[NEURAL] Fusing LoRA weights into base tensors for high-speed inference...")
+                    self.model = self.model.merge_and_unload()
                 except Exception as lora_e:
                     print(f"[NEURAL] WARNING: latest_adapter corrupted ({lora_e}). Attempting fallback to previous_stable...")
                     if os.path.exists(stable_path):
                         self.model = PeftModel.from_pretrained(self.model, stable_path)
+                        print("[NEURAL] Fusing stable LoRA weights...")
+                        self.model = self.model.merge_and_unload()
                         print("[NEURAL] Successfully loaded previous_stable adapter.")
                     else:
                         print("[NEURAL] No stable fallback found. Running on baseline weights.")
             elif os.path.exists(stable_path):
                 print(f"[NEURAL] latest_adapter missing. Found previous_stable. Injecting weights from: {stable_path}")
                 self.model = PeftModel.from_pretrained(self.model, stable_path)
+                print("[NEURAL] Fusing stable LoRA weights...")
+                self.model = self.model.merge_and_unload()
             else:
                 print("[NEURAL] No LoRA adapter found. Running on baseline weights.")
                 
