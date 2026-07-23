@@ -203,8 +203,31 @@ class TelemetryDashboard(QMainWindow):
         grid.addWidget(metr_box, 2, 0, 1, 2)
         
         layout.addLayout(grid)
+        
+        # Add Sovereignty Toggle
+        from PyQt6.QtWidgets import QPushButton
+        self.btn_toggle_sov = QPushButton("⚠️ TOGGLE LOCAL SOVEREIGNTY (OLLAMA)")
+        self.btn_toggle_sov.setStyleSheet("background-color: #F44336; color: white; padding: 15px; font-weight: bold; font-size: 16px; margin-top: 20px; border-radius: 5px;")
+        self.btn_toggle_sov.clicked.connect(self.toggle_sovereignty)
+        layout.addWidget(self.btn_toggle_sov)
+        
         layout.addStretch()
         
+    def toggle_sovereignty(self):
+        import os
+        if os.getenv("OLLAMA_MODEL"):
+            os.environ.pop("OLLAMA_MODEL", None)
+            self.btn_toggle_sov.setStyleSheet("background-color: #F44336; color: white; padding: 15px; font-weight: bold; font-size: 16px; margin-top: 20px; border-radius: 5px;")
+            self.btn_toggle_sov.setText("⚠️ TOGGLE LOCAL SOVEREIGNTY (OLLAMA)")
+            if hasattr(self, 'lbl_status'):
+                self.lbl_status.setText("ROUTING: CLOUD")
+        else:
+            os.environ["OLLAMA_MODEL"] = "llama3"
+            self.btn_toggle_sov.setStyleSheet("background-color: #06b6d4; color: white; padding: 15px; font-weight: bold; font-size: 16px; margin-top: 20px; border-radius: 5px;")
+            self.btn_toggle_sov.setText("🔒 AIRGAPPED: OLLAMA ACTIVE")
+            if hasattr(self, 'lbl_status'):
+                self.lbl_status.setText("ROUTING: LOCAL")
+
     def create_stat_box(self, title, value):
         group = QGroupBox(title)
         group.setFont(QFont("Arial", 10, QFont.Weight.Bold))

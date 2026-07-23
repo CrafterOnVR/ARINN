@@ -19,10 +19,20 @@ class LLMClient:
         api_key = os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
         base_url = os.getenv("LLM_BASE_URL") or os.getenv("OPENAI_BASE_URL")
         
+        # Check for Ollama Override
+        ollama_model = os.getenv("OLLAMA_MODEL")
+        if ollama_model:
+            api_key = "ollama"
+            base_url = "http://localhost:11434/v1"
+            self.model = ollama_model
+            print(f"[LLM] True Sovereignty Mode: Routing to local Ollama ({ollama_model})")
+        else:
+            self.model = DEFAULT_MODEL
+            
         self.enabled = enabled and bool(api_key) and (OpenAI is not None)
         
         if self.enabled:
-            # Passes base_url explicitly. If None, it defaults natively. This allows Qwen endpoints.
+            # Passes base_url explicitly. If None, it defaults natively. This allows Qwen/Ollama endpoints.
             self._client = OpenAI(
                 api_key=api_key, 
                 base_url=base_url,
@@ -34,7 +44,6 @@ class LLMClient:
         else:
             self._client = None
             
-        self.model = DEFAULT_MODEL
         self.watchdog = CircadianWatchdog(check_interval_seconds=3600) # Deep-sleep 1 hour on 429
 
     def _handle_api_call(self, call_func, *args, **kwargs):
