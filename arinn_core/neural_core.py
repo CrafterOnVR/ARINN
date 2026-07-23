@@ -138,10 +138,10 @@ class NeuralCore:
                 tps = tokens_generated / elapsed
                 remaining = max_tokens - tokens_generated
                 eta = remaining / tps if tps > 0 else 0
-                sys.stdout.write(f"\r\033[94m[NEURAL] Executing forward pass... (TPS: {tps:.1f} | ETA: {eta:.1f}s)\033[0m")
+                sys.stdout.write(f"\r\033[94m[NEURAL] Executing forward pass... (TPS: {tps:.1f} | ETA: {eta:.1f}s)\033[0m          ")
                 sys.stdout.flush()
                 
-        sys.stdout.write(f"\r\033[94m[NEURAL] Forward pass complete! (Final TPS: {tokens_generated/(time.time()-start_time):.1f})\033[0m\n")
+        sys.stdout.write(f"\r\033[94m[NEURAL] Forward pass complete! (Final TPS: {tokens_generated/(time.time()-start_time):.1f})\033[0m{' ' * 20}\n")
         sys.stdout.flush()
         
         return response, {}
