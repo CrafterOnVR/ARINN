@@ -49,10 +49,835 @@
             "timestamp": 1784790846.720175,
             "score": 83.33333333333334,
             "generation": 10
+        },
+        {
+            "timestamp": 1784791480.2313077,
+            "score": 84.61538461538461,
+            "generation": 11
+        },
+        {
+            "timestamp": 1784791574.2314577,
+            "score": 85.71428571428571,
+            "generation": 12
+        },
+        {
+            "timestamp": 1784792159.65818,
+            "score": 86.66666666666667,
+            "generation": 13
+        },
+        {
+            "timestamp": 1784792392.4374688,
+            "score": 87.5,
+            "generation": 14
+        },
+        {
+            "timestamp": 1784792569.6975303,
+            "score": 88.23529411764706,
+            "generation": 15
+        },
+        {
+            "timestamp": 1784792765.1128707,
+            "score": 88.88888888888889,
+            "generation": 16
+        },
+        {
+            "timestamp": 1784793010.74522,
+            "score": 89.47368421052632,
+            "generation": 17
+        },
+        {
+            "timestamp": 1784793316.042041,
+            "score": 90.0,
+            "generation": 18
+        },
+        {
+            "timestamp": 1784793459.7780104,
+            "score": 90.47619047619048,
+            "generation": 19
+        },
+        {
+            "timestamp": 1784793872.8095505,
+            "score": 90.9090909090909,
+            "generation": 20
+        },
+        {
+            "timestamp": 1784794215.2080235,
+            "score": 91.30434782608695,
+            "generation": 21
+        },
+        {
+            "timestamp": 1784794286.2649999,
+            "score": 91.66666666666666,
+            "generation": 22
+        },
+        {
+            "timestamp": 1784794709.3451927,
+            "score": 92.0,
+            "generation": 23
+        },
+        {
+            "timestamp": 1784795264.2822008,
+            "score": 92.3076923076923,
+            "generation": 24
+        },
+        {
+            "timestamp": 1784795575.6938674,
+            "score": 88.88888888888889,
+            "generation": 25
+        },
+        {
+            "timestamp": 1784795828.824967,
+            "score": 89.28571428571429,
+            "generation": 26
+        },
+        {
+            "timestamp": 1784796101.19397,
+            "score": 89.65517241379311,
+            "generation": 27
+        },
+        {
+            "timestamp": 1784796512.4383132,
+            "score": 90.0,
+            "generation": 28
+        },
+        {
+            "timestamp": 1784796582.7965724,
+            "score": 90.32258064516128,
+            "generation": 29
+        },
+        {
+            "timestamp": 1784796814.094102,
+            "score": 90.625,
+            "generation": 30
+        },
+        {
+            "timestamp": 1784796885.8253114,
+            "score": 90.9090909090909,
+            "generation": 31
+        },
+        {
+            "timestamp": 1784797022.5484135,
+            "score": 91.17647058823529,
+            "generation": 32
+        },
+        {
+            "timestamp": 1784797387.7224622,
+            "score": 91.42857142857143,
+            "generation": 33
+        },
+        {
+            "timestamp": 1784797906.375694,
+            "score": 91.66666666666666,
+            "generation": 34
+        },
+        {
+            "timestamp": 1784798401.7723322,
+            "score": 91.8918918918919,
+            "generation": 35
+        },
+        {
+            "timestamp": 1784798661.4745038,
+            "score": 92.10526315789474,
+            "generation": 36
+        },
+        {
+            "timestamp": 1784798722.0824506,
+            "score": 92.3076923076923,
+            "generation": 37
+        },
+        {
+            "timestamp": 1784798784.9576871,
+            "score": 92.5,
+            "generation": 38
+        },
+        {
+            "timestamp": 1784798901.3574374,
+            "score": 92.6829268292683,
+            "generation": 39
+        },
+        {
+            "timestamp": 1784799111.808307,
+            "score": 92.85714285714286,
+            "generation": 40
+        },
+        {
+            "timestamp": 1784799438.8982055,
+            "score": 93.02325581395348,
+            "generation": 41
+        },
+        {
+            "timestamp": 1784800066.6592138,
+            "score": 93.18181818181817,
+            "generation": 42
+        },
+        {
+            "timestamp": 1784800169.7714982,
+            "score": 93.33333333333333,
+            "generation": 43
+        },
+        {
+            "timestamp": 1784800230.6570895,
+            "score": 93.47826086956522,
+            "generation": 44
+        },
+        {
+            "timestamp": 1784800295.6520507,
+            "score": 93.61702127659575,
+            "generation": 45
+        },
+        {
+            "timestamp": 1784800465.7974732,
+            "score": 93.75,
+            "generation": 46
+        },
+        {
+            "timestamp": 1784800618.4203372,
+            "score": 93.87755102040816,
+            "generation": 47
+        },
+        {
+            "timestamp": 1784800899.309023,
+            "score": 94.0,
+            "generation": 48
+        },
+        {
+            "timestamp": 1784800969.9732444,
+            "score": 94.11764705882352,
+            "generation": 49
+        },
+        {
+            "timestamp": 1784801408.0482776,
+            "score": 94.23076923076923,
+            "generation": 50
+        },
+        {
+            "timestamp": 1784801614.9650228,
+            "score": 94.33962264150944,
+            "generation": 51
+        },
+        {
+            "timestamp": 1784801892.7410622,
+            "score": 94.44444444444444,
+            "generation": 52
+        },
+        {
+            "timestamp": 1784802168.9179296,
+            "score": 94.54545454545455,
+            "generation": 53
+        },
+        {
+            "timestamp": 1784802231.2951984,
+            "score": 94.64285714285714,
+            "generation": 54
+        },
+        {
+            "timestamp": 1784802627.4779525,
+            "score": 94.73684210526315,
+            "generation": 55
+        },
+        {
+            "timestamp": 1784803683.5097327,
+            "score": 94.82758620689656,
+            "generation": 56
+        },
+        {
+            "timestamp": 1784804908.3226612,
+            "score": 94.91525423728814,
+            "generation": 57
+        },
+        {
+            "timestamp": 1784805075.3110485,
+            "score": 95.0,
+            "generation": 58
+        },
+        {
+            "timestamp": 1784805727.0762908,
+            "score": 95.08196721311475,
+            "generation": 59
+        },
+        {
+            "timestamp": 1784806249.5347497,
+            "score": 95.16129032258065,
+            "generation": 60
+        },
+        {
+            "timestamp": 1784806712.9448185,
+            "score": 95.23809523809523,
+            "generation": 61
+        },
+        {
+            "timestamp": 1784807056.370539,
+            "score": 95.3125,
+            "generation": 62
+        },
+        {
+            "timestamp": 1784807265.5279815,
+            "score": 95.38461538461539,
+            "generation": 63
+        },
+        {
+            "timestamp": 1784807336.2711012,
+            "score": 95.45454545454545,
+            "generation": 64
+        },
+        {
+            "timestamp": 1784807403.3044744,
+            "score": 95.52238805970148,
+            "generation": 65
+        },
+        {
+            "timestamp": 1784807516.903862,
+            "score": 95.58823529411765,
+            "generation": 66
+        },
+        {
+            "timestamp": 1784807775.1354513,
+            "score": 95.65217391304348,
+            "generation": 67
+        },
+        {
+            "timestamp": 1784808190.2484074,
+            "score": 95.71428571428572,
+            "generation": 68
+        },
+        {
+            "timestamp": 1784808500.231015,
+            "score": 95.77464788732394,
+            "generation": 69
+        },
+        {
+            "timestamp": 1784808882.4935806,
+            "score": 95.83333333333334,
+            "generation": 70
+        },
+        {
+            "timestamp": 1784808966.5323021,
+            "score": 95.8904109589041,
+            "generation": 71
+        },
+        {
+            "timestamp": 1784809125.8853548,
+            "score": 95.94594594594594,
+            "generation": 72
+        },
+        {
+            "timestamp": 1784809202.2124324,
+            "score": 96.0,
+            "generation": 73
+        },
+        {
+            "timestamp": 1784809290.4724612,
+            "score": 96.05263157894737,
+            "generation": 74
+        },
+        {
+            "timestamp": 1784809481.0838754,
+            "score": 96.1038961038961,
+            "generation": 75
+        },
+        {
+            "timestamp": 1784809923.9214292,
+            "score": 96.15384615384616,
+            "generation": 76
+        },
+        {
+            "timestamp": 1784810358.192325,
+            "score": 96.20253164556962,
+            "generation": 77
+        },
+        {
+            "timestamp": 1784810819.6337402,
+            "score": 96.25,
+            "generation": 78
+        },
+        {
+            "timestamp": 1784811031.7881868,
+            "score": 96.29629629629629,
+            "generation": 79
+        },
+        {
+            "timestamp": 1784811087.0326376,
+            "score": 96.34146341463415,
+            "generation": 80
+        },
+        {
+            "timestamp": 1784811168.3420122,
+            "score": 96.3855421686747,
+            "generation": 81
+        },
+        {
+            "timestamp": 1784811424.3087027,
+            "score": 96.42857142857143,
+            "generation": 82
+        },
+        {
+            "timestamp": 1784811497.7704747,
+            "score": 96.47058823529412,
+            "generation": 83
+        },
+        {
+            "timestamp": 1784811635.235026,
+            "score": 96.51162790697676,
+            "generation": 84
+        },
+        {
+            "timestamp": 1784811783.1806355,
+            "score": 96.55172413793103,
+            "generation": 85
+        },
+        {
+            "timestamp": 1784812019.003071,
+            "score": 96.5909090909091,
+            "generation": 86
+        },
+        {
+            "timestamp": 1784812284.3796952,
+            "score": 96.62921348314607,
+            "generation": 87
+        },
+        {
+            "timestamp": 1784812520.5969853,
+            "score": 96.66666666666667,
+            "generation": 88
+        },
+        {
+            "timestamp": 1784813301.1621902,
+            "score": 96.7032967032967,
+            "generation": 89
+        },
+        {
+            "timestamp": 1784813432.3987353,
+            "score": 96.73913043478261,
+            "generation": 90
+        },
+        {
+            "timestamp": 1784813633.5537806,
+            "score": 96.7741935483871,
+            "generation": 91
+        },
+        {
+            "timestamp": 1784813996.0324252,
+            "score": 96.80851063829788,
+            "generation": 92
+        },
+        {
+            "timestamp": 1784814051.6352608,
+            "score": 96.84210526315789,
+            "generation": 93
+        },
+        {
+            "timestamp": 1784814718.0558043,
+            "score": 96.875,
+            "generation": 94
+        },
+        {
+            "timestamp": 1784815340.8247397,
+            "score": 96.90721649484536,
+            "generation": 95
+        },
+        {
+            "timestamp": 1784815446.171459,
+            "score": 96.93877551020408,
+            "generation": 96
+        },
+        {
+            "timestamp": 1784815671.2479005,
+            "score": 96.96969696969697,
+            "generation": 97
+        },
+        {
+            "timestamp": 1784815744.9372873,
+            "score": 97.0,
+            "generation": 98
+        },
+        {
+            "timestamp": 1784816256.8107295,
+            "score": 97.02970297029702,
+            "generation": 99
+        },
+        {
+            "timestamp": 1784816435.8877199,
+            "score": 97.05882352941177,
+            "generation": 100
+        },
+        {
+            "timestamp": 1784816732.6051,
+            "score": 97.0873786407767,
+            "generation": 101
+        },
+        {
+            "timestamp": 1784816897.5870745,
+            "score": 97.11538461538461,
+            "generation": 102
+        },
+        {
+            "timestamp": 1784817154.9450846,
+            "score": 97.14285714285714,
+            "generation": 103
+        },
+        {
+            "timestamp": 1784817472.7584774,
+            "score": 97.16981132075472,
+            "generation": 104
+        },
+        {
+            "timestamp": 1784817639.4363022,
+            "score": 97.19626168224299,
+            "generation": 105
+        },
+        {
+            "timestamp": 1784817770.0985873,
+            "score": 97.22222222222221,
+            "generation": 106
+        },
+        {
+            "timestamp": 1784818608.2784586,
+            "score": 97.24770642201835,
+            "generation": 107
+        },
+        {
+            "timestamp": 1784818689.9552972,
+            "score": 97.27272727272728,
+            "generation": 108
+        },
+        {
+            "timestamp": 1784819526.0134304,
+            "score": 97.2972972972973,
+            "generation": 109
+        },
+        {
+            "timestamp": 1784819775.4439178,
+            "score": 97.32142857142857,
+            "generation": 110
+        },
+        {
+            "timestamp": 1784819850.2175522,
+            "score": 97.34513274336283,
+            "generation": 111
+        },
+        {
+            "timestamp": 1784820314.3351114,
+            "score": 97.36842105263158,
+            "generation": 112
+        },
+        {
+            "timestamp": 1784820740.625209,
+            "score": 97.3913043478261,
+            "generation": 113
+        },
+        {
+            "timestamp": 1784820963.8227081,
+            "score": 97.41379310344827,
+            "generation": 114
+        },
+        {
+            "timestamp": 1784821051.6851149,
+            "score": 97.43589743589743,
+            "generation": 115
+        },
+        {
+            "timestamp": 1784821812.1503944,
+            "score": 97.45762711864407,
+            "generation": 116
+        },
+        {
+            "timestamp": 1784821882.0513098,
+            "score": 97.47899159663865,
+            "generation": 117
+        },
+        {
+            "timestamp": 1784822030.9130607,
+            "score": 97.5,
+            "generation": 118
+        },
+        {
+            "timestamp": 1784822109.2022946,
+            "score": 97.52066115702479,
+            "generation": 119
+        },
+        {
+            "timestamp": 1784822193.4541876,
+            "score": 97.54098360655738,
+            "generation": 120
+        },
+        {
+            "timestamp": 1784822366.2141051,
+            "score": 97.5609756097561,
+            "generation": 121
+        },
+        {
+            "timestamp": 1784822663.780664,
+            "score": 97.58064516129032,
+            "generation": 122
+        },
+        {
+            "timestamp": 1784822930.7281895,
+            "score": 97.6,
+            "generation": 123
+        },
+        {
+            "timestamp": 1784823098.4087083,
+            "score": 97.61904761904762,
+            "generation": 124
+        },
+        {
+            "timestamp": 1784823158.9925735,
+            "score": 97.63779527559055,
+            "generation": 125
+        },
+        {
+            "timestamp": 1784823535.1273613,
+            "score": 97.65625,
+            "generation": 126
+        },
+        {
+            "timestamp": 1784823693.2672877,
+            "score": 97.67441860465115,
+            "generation": 127
+        },
+        {
+            "timestamp": 1784823859.6212058,
+            "score": 97.6923076923077,
+            "generation": 128
+        },
+        {
+            "timestamp": 1784823998.7224607,
+            "score": 97.70992366412213,
+            "generation": 129
+        },
+        {
+            "timestamp": 1784824249.4528308,
+            "score": 97.72727272727273,
+            "generation": 130
+        },
+        {
+            "timestamp": 1784824326.685003,
+            "score": 97.74436090225564,
+            "generation": 131
+        },
+        {
+            "timestamp": 1784824731.7789886,
+            "score": 97.76119402985076,
+            "generation": 132
+        },
+        {
+            "timestamp": 1784824870.6881135,
+            "score": 97.77777777777777,
+            "generation": 133
+        },
+        {
+            "timestamp": 1784824930.2121544,
+            "score": 97.79411764705883,
+            "generation": 134
+        },
+        {
+            "timestamp": 1784825090.0880716,
+            "score": 97.8102189781022,
+            "generation": 135
+        },
+        {
+            "timestamp": 1784825184.1582017,
+            "score": 97.82608695652173,
+            "generation": 136
+        },
+        {
+            "timestamp": 1784825341.933744,
+            "score": 97.84172661870504,
+            "generation": 137
+        },
+        {
+            "timestamp": 1784825402.8190012,
+            "score": 97.85714285714285,
+            "generation": 138
+        },
+        {
+            "timestamp": 1784825463.5375266,
+            "score": 97.87234042553192,
+            "generation": 139
+        },
+        {
+            "timestamp": 1784825523.9009373,
+            "score": 97.88732394366197,
+            "generation": 140
+        },
+        {
+            "timestamp": 1784825871.2769408,
+            "score": 97.9020979020979,
+            "generation": 141
+        },
+        {
+            "timestamp": 1784826207.3925622,
+            "score": 97.91666666666666,
+            "generation": 142
+        },
+        {
+            "timestamp": 1784826274.272677,
+            "score": 97.93103448275862,
+            "generation": 143
+        },
+        {
+            "timestamp": 1784826503.0786018,
+            "score": 97.94520547945206,
+            "generation": 144
+        },
+        {
+            "timestamp": 1784826778.0626247,
+            "score": 97.95918367346938,
+            "generation": 145
+        },
+        {
+            "timestamp": 1784827383.1632333,
+            "score": 97.97297297297297,
+            "generation": 146
+        },
+        {
+            "timestamp": 1784827515.895606,
+            "score": 97.98657718120806,
+            "generation": 147
+        },
+        {
+            "timestamp": 1784827737.2156515,
+            "score": 98.0,
+            "generation": 148
+        },
+        {
+            "timestamp": 1784827898.5414891,
+            "score": 98.01324503311258,
+            "generation": 149
+        },
+        {
+            "timestamp": 1784828185.7511292,
+            "score": 98.02631578947368,
+            "generation": 150
+        },
+        {
+            "timestamp": 1784828250.9744692,
+            "score": 98.0392156862745,
+            "generation": 151
+        },
+        {
+            "timestamp": 1784828321.3333862,
+            "score": 98.05194805194806,
+            "generation": 152
+        },
+        {
+            "timestamp": 1784828393.5440578,
+            "score": 98.06451612903226,
+            "generation": 153
+        },
+        {
+            "timestamp": 1784828608.431521,
+            "score": 98.07692307692307,
+            "generation": 154
+        },
+        {
+            "timestamp": 1784828908.9005463,
+            "score": 98.08917197452229,
+            "generation": 155
+        },
+        {
+            "timestamp": 1784830117.4037154,
+            "score": 98.10126582278481,
+            "generation": 156
+        },
+        {
+            "timestamp": 1784830190.5649776,
+            "score": 98.11320754716981,
+            "generation": 157
+        },
+        {
+            "timestamp": 1784830758.3489306,
+            "score": 98.125,
+            "generation": 158
+        },
+        {
+            "timestamp": 1784831145.5570557,
+            "score": 98.13664596273291,
+            "generation": 159
+        },
+        {
+            "timestamp": 1784831292.2031577,
+            "score": 98.14814814814815,
+            "generation": 160
+        },
+        {
+            "timestamp": 1784831433.6826785,
+            "score": 98.15950920245399,
+            "generation": 161
+        },
+        {
+            "timestamp": 1784831519.0878131,
+            "score": 98.17073170731707,
+            "generation": 162
+        },
+        {
+            "timestamp": 1784831696.813589,
+            "score": 98.18181818181819,
+            "generation": 163
+        },
+        {
+            "timestamp": 1784831774.4770565,
+            "score": 98.19277108433735,
+            "generation": 164
+        },
+        {
+            "timestamp": 1784831861.4300637,
+            "score": 98.20359281437125,
+            "generation": 165
+        },
+        {
+            "timestamp": 1784832020.8406625,
+            "score": 98.21428571428571,
+            "generation": 166
+        },
+        {
+            "timestamp": 1784832232.8021045,
+            "score": 98.22485207100591,
+            "generation": 167
+        },
+        {
+            "timestamp": 1784833110.6301951,
+            "score": 98.23529411764706,
+            "generation": 168
+        },
+        {
+            "timestamp": 1784833750.8677173,
+            "score": 98.24561403508771,
+            "generation": 169
+        },
+        {
+            "timestamp": 1784833965.950672,
+            "score": 98.25581395348837,
+            "generation": 170
+        },
+        {
+            "timestamp": 1784834043.103088,
+            "score": 98.26589595375722,
+            "generation": 171
+        },
+        {
+            "timestamp": 1784834110.4778886,
+            "score": 98.27586206896551,
+            "generation": 172
+        },
+        {
+            "timestamp": 1784834206.0117447,
+            "score": 98.28571428571429,
+            "generation": 173
+        },
+        {
+            "timestamp": 1784834258.153007,
+            "score": 98.29545454545455,
+            "generation": 174
+        },
+        {
+            "timestamp": 1784834325.360093,
+            "score": 98.30508474576271,
+            "generation": 175
         }
     ],
-    "arinn_tasks_attempted": 12,
-    "arinn_tasks_completed": 10,
+    "arinn_tasks_attempted": 177,
+    "arinn_tasks_completed": 174,
     "current_metr_level": 0,
     "completed_metr_tasks": [
         "Implement a local Python module utilizing Non-Euclidean Graph Mapping to minimize Epistemic Uncertainty."

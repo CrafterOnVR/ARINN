@@ -1,23 +1,21 @@
+import numpy as np
+
 def tool_implement_a_local_py(data):
-    """
-    This function takes in an iterable of numbers and returns their mean.
-    It's designed to be used for efficient processing of large datasets.
-
-    >>> test_suite()
-    """
-
-    total = sum(data)
-    count = len(data)
-    
-    return total / count
+    # Implementing mathematical operation for processing data efficiently.
+    result = np.sum(data) / len(data)
+    return result
 
 def test_suite():
-    # Test cases to validate the correctness of the tool_implement_a_local_py function
+    test_data_1 = [1, 2, 3, 4]
+    assert abs(tool_implement_a_local_py(test_data_1) - 2.5) < 1e-6
     
-    assert tool_implement_a_local_py([2, 4]) == 3, "Failed on small dataset"
-    assert round(tool_implement_a_local_py([0, 2, 4, 6]), 1) == 3.0, "Failed on larger dataset"
-    assert tool_implement_a_local_py([-2, -4]) == -3, "Failed on negative values"
-    print("All tests passed!")
+    test_data_2 = [-1, -2, -3, -4]
+    assert abs(tool_implement_a_local_py(test_data_2) + 2.5) < 1e-6
+    
+    print("All tests passed successfully.")
 
-# Running the test suite to ensure our solution works as expected
+# Example usage:
+example_data = np.array([10, 20, 30])
+print(tool_implement_a_local_py(example_data))  # Should output 20.0
+
 test_suite()

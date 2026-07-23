@@ -128,7 +128,13 @@ class TelemetryDashboard(QMainWindow):
         
     def refresh_growth_graph(self):
         x, y = self.benchmark.get_historical_growth()
+        
+        # Only redraw if we have new data to prevent camera snapping
+        if hasattr(self, '_last_data_len') and self._last_data_len == len(x):
+            return
+            
         self.growth_plot.clear()
+        self._last_data_len = len(x)
         
         if not x:
             self.growth_plot.setYRange(0, 100, padding=0)
@@ -139,9 +145,9 @@ class TelemetryDashboard(QMainWindow):
         pen = pg.mkPen(color=(0, 255, 100), width=3)
         self.growth_plot.plot(x, y, pen=pen, symbol='o', symbolSize=8, symbolBrush=(0, 255, 100))
         
-        # Enforce strict bounds so a single point doesn't break the axes
-        self.growth_plot.setYRange(0, 100, padding=0)
+        # Enforce strict bounds only for initialization
         if len(x) == 1:
+            self.growth_plot.setYRange(0, 100, padding=0)
             self.growth_plot.setXRange(0, 5, padding=0)
 
     def setup_leaderboard_tab(self):
