@@ -12,9 +12,14 @@ class BenchmarkSuite:
             "GPT-4o": 70.0,
             "Claude 3 Opus": 65.0,
             "Gemini 1.5 Pro": 60.0,
+            "DeepSeek Coder V2": 52.0,
+            "Mistral Large": 48.0,
             "Llama-3-70B": 45.0,
+            "Claude 3 Haiku": 35.0,
+            "Gemini 1.5 Flash": 30.0,
             "GPT-3.5": 10.0,
-            "Llama-3-8B": 5.0
+            "Llama-3-8B": 5.0,
+            "Mistral 7B": 3.0
         }
         
         # METR Time Horizons (Task duration vs 80% Success Rate)
