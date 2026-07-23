@@ -78,11 +78,25 @@ async def main():
             print(f"\n[SINGULARITY] Cycle {cycle_count} complete. Resting to cool neural gradients (10s)...\n")
             await asyncio.sleep(10)
             
-            # TRIGGER NIGHT CYCLE
+            # TRIGGER ASYNCHRONOUS NIGHT CYCLE
             if cycle_count % NIGHT_CYCLE_INTERVAL == 0 and fine_tuner and synthesizer:
                 dataset_path = synthesizer.get_latest_dataset()
                 if dataset_path:
-                    fine_tuner.trigger_night_cycle(dataset_path)
+                    # Check if training is already active to prevent VRAM collision
+                    if getattr(fine_tuner, "is_training_active", False):
+                        print(f"\n[NIGHT CYCLE] SKIPPED. Previous neural training is still in progress. Gathering more data for the next cycle instead...\n")
+                    else:
+                        print(f"\n[NIGHT CYCLE] SPANNING ASYNC CORTEX UPGRADE. Swarm execution will continue uninterrupted!\n")
+                        
+                        def run_training_safely(path):
+                            fine_tuner.is_training_active = True
+                            try:
+                                fine_tuner.trigger_night_cycle(path)
+                            finally:
+                                fine_tuner.is_training_active = False
+                                
+                        # Launch in a background thread so the Swarm event loop never freezes
+                        asyncio.create_task(asyncio.to_thread(run_training_safely, dataset_path))
                 else:
                     print("[NIGHT CYCLE] Skipped. No training data generated today.")
 
