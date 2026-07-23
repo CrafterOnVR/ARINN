@@ -24,7 +24,9 @@ class ToolGenerator:
             except ImportError:
                 neural_core = None
                 
-        system_prompt = f"Write a single robust python module with a central function named {tool_name} to solve: {requirements}. You MUST also write a function named `test_suite()` containing strict `assert` statements to mathematically verify your logic. Include no markdown wrapping formatting."
+        import random
+        seed_variance = random.randint(10000, 99999)
+        system_prompt = f"System Variance Seed: {seed_variance}\nWrite a single robust python module with a central function named {tool_name} to solve: {requirements}. You MUST also write a function named `test_suite()` containing strict `assert` statements to mathematically verify your logic. Include no markdown wrapping formatting."
         
         try:
             if neural_core is None:
