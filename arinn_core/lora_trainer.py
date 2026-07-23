@@ -105,7 +105,7 @@ class ARINNFineTuner:
             elif dml_device is not None:
                 model = transformers.AutoModelForCausalLM.from_pretrained(
                     self.model_id,
-                    torch_dtype=torch.float16
+                    torch_dtype=torch.float32
                 )
                 model.to(dml_device)
             else:
