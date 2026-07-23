@@ -5,8 +5,12 @@ from peft import PeftModel
 
 class NaNGuardLogitsProcessor(LogitsProcessor):
     def __call__(self, input_ids, scores):
-        # Prevent DirectML from crashing during multinomial sampling by purging NaNs and Infs
-        return torch.nan_to_num(scores, nan=-1e4, posinf=1e4, neginf=-1e4)
+        # Prevent DirectML from crashing during multinomial sampling by purging NaNs and Infs.
+        # Avoid torch.nan_to_num to prevent CPU fallback performance bottlenecks on DML.
+        scores[scores != scores] = -1e4
+        scores[scores == float('inf')] = 1e4
+        scores[scores == float('-inf')] = -1e4
+        return scores
 
 class NeuralCore:
     _instance = None
