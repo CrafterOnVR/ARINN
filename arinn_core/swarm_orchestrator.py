@@ -181,8 +181,8 @@ def agent_examiner(opt_data, task_name):
             metrics["metr_score"] = new_percentage
         else:
             print(f"[Examiner] Sandbox validation failed. Bypassing dataset logging.")
-            metrics["error"] = opt_data.get("error")
-            
+            suite.record_task_failure(task_name)
+            return {"status": "error", "agent": "examiner", "error": "Sandbox test suite failed"}         
         return metrics
     except Exception as e:
         return {"status": "error", "agent": "examiner", "error": str(e)}
@@ -276,6 +276,8 @@ class SwarmOrchestrator:
                 
                 if res_data.get("status") == "error" or arch_data.get("status") == "error":
                     print(f"[Orchestrator] Error in Phase 1. Invoking Debate Arena...\nRes: {res_data}\nArch: {arch_data}")
+                    from arinn_core.benchmark_suite import BenchmarkSuite
+                    BenchmarkSuite().record_task_failure(task)
                     await self.invoke_debate_arena(task)
                     return False
                     

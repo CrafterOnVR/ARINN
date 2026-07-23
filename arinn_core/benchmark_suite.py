@@ -110,6 +110,15 @@ class BenchmarkSuite:
             history["arinn_tasks_attempted"] = 0
         history["arinn_tasks_attempted"] += 1
         self._save_history(history)
+        
+    def record_task_failure(self, task_name: str):
+        history = self._load_history()
+        if "task_consecutive_successes" not in history:
+            history["task_consecutive_successes"] = {}
+        
+        history["task_consecutive_successes"][task_name] = 0
+        print(f"\n[BENCHMARK] Task '{task_name}' failed. Streak reset to 0/10.\n")
+        self._save_history(history)
 
     def record_new_score(self, generation: int, metr_task_completed: str = None):
         history = self._load_history()
@@ -127,10 +136,18 @@ class BenchmarkSuite:
                 
             if "arinn_tasks_completed" not in history:
                 history["arinn_tasks_completed"] = 0
+                
+            if "task_consecutive_successes" not in history:
+                history["task_consecutive_successes"] = {}
+                
+            current_streak = history["task_consecutive_successes"].get(metr_task_completed, 0) + 1
+            history["task_consecutive_successes"][metr_task_completed] = current_streak
+            print(f"\n[BENCHMARK] Task '{metr_task_completed}' consecutive successes: {current_streak}/10\n")
             
-            # We add to completed_metr_tasks for level tracking, but we ALWAYS 
-            # increment arinn_tasks_completed so the success rate math stays accurate!
-            if metr_task_completed not in history["completed_metr_tasks"]:
+            # We ONLY add to completed_metr_tasks if streak >= 10
+            # We ALWAYS increment arinn_tasks_completed so the success rate math stays accurate!
+            if current_streak >= 10 and metr_task_completed not in history["completed_metr_tasks"]:
+                print(f"[BENCHMARK] *** HORIZON UNLOCKED *** 10 consecutive successes achieved for '{metr_task_completed}'!")
                 history["completed_metr_tasks"].append(metr_task_completed)
                 
                 for h in self.metr_horizons:
