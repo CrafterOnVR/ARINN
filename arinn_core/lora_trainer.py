@@ -172,11 +172,29 @@ class ARINNFineTuner:
                     batch = {k: v.to(dml_device) for k, v in batch.items()}
                     outputs = model(**batch)
                     loss = outputs.loss
+                    
+                    if torch.isnan(loss) or torch.isinf(loss):
+                        print("[LoRA] Warning: FP16 Loss Overflow (NaN). Skipping batch to protect weights.")
+                        optimizer.zero_grad()
+                        continue
+                        
                     loss.backward()
                     
                     # Prevent FP16 gradient explosion from corrupting the LoRA weights with NaNs
                     torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
                     
+                    # Double check gradients aren't NaN before applying step
+                    has_nan_grad = False
+                    for p in model.parameters():
+                        if p.grad is not None and torch.isnan(p.grad).any():
+                            has_nan_grad = True
+                            break
+                            
+                    if has_nan_grad:
+                        print("[LoRA] Warning: FP16 Gradient Overflow (NaN). Skipping batch to protect weights.")
+                        optimizer.zero_grad()
+                        continue
+                        
                     optimizer.step()
                     optimizer.zero_grad()
                     progress_bar.update(1)

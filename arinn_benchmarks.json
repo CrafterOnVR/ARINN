@@ -4,10 +4,40 @@
             "timestamp": 1784787172.798216,
             "score": 33.33333333333333,
             "generation": 1
+        },
+        {
+            "timestamp": 1784789391.1164563,
+            "score": 50.0,
+            "generation": 2
+        },
+        {
+            "timestamp": 1784789469.304297,
+            "score": 60.0,
+            "generation": 3
+        },
+        {
+            "timestamp": 1784789589.401096,
+            "score": 66.66666666666666,
+            "generation": 4
+        },
+        {
+            "timestamp": 1784789847.358458,
+            "score": 71.42857142857143,
+            "generation": 5
+        },
+        {
+            "timestamp": 1784789913.6795206,
+            "score": 75.0,
+            "generation": 6
+        },
+        {
+            "timestamp": 1784790114.0066025,
+            "score": 77.77777777777779,
+            "generation": 7
         }
     ],
-    "arinn_tasks_attempted": 3,
-    "arinn_tasks_completed": 1,
+    "arinn_tasks_attempted": 9,
+    "arinn_tasks_completed": 7,
     "current_metr_level": 0,
     "completed_metr_tasks": [
         "Implement a local Python module utilizing Non-Euclidean Graph Mapping to minimize Epistemic Uncertainty."
