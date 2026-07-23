@@ -106,22 +106,16 @@ class BenchmarkSuite:
         history["arinn_tasks_attempted"] += 1
         self._save_history(history)
 
-    def record_new_score(self, score: float, generation: int, metr_task_completed: str = None):
+    def record_new_score(self, generation: int, metr_task_completed: str = None):
         history = self._load_history()
         
-        # FIX: Find the absolute maximum generation so we don't accidentally go backwards
+        # Calculate generation
         existing_scores = history.get("rsi_efficiency_scores", [])
         if existing_scores:
             correct_generation = max(s.get("generation", 0) for s in existing_scores) + 1
         else:
             correct_generation = 1
-        
-        history["rsi_efficiency_scores"].append({
-            "timestamp": time.time(),
-            "score": score,
-            "generation": correct_generation
-        })
-        
+            
         if metr_task_completed:
             if "completed_metr_tasks" not in history:
                 history["completed_metr_tasks"] = []
@@ -129,13 +123,27 @@ class BenchmarkSuite:
             if "arinn_tasks_completed" not in history:
                 history["arinn_tasks_completed"] = 0
             
+            # We add to completed_metr_tasks for level tracking, but we ALWAYS 
+            # increment arinn_tasks_completed so the success rate math stays accurate!
             if metr_task_completed not in history["completed_metr_tasks"]:
                 history["completed_metr_tasks"].append(metr_task_completed)
-                history["arinn_tasks_completed"] += 1
                 
-                # Advance METR level if we match a defined horizon
                 for h in self.metr_horizons:
                     if h["task"] == metr_task_completed and h["level"] > history.get("current_metr_level", -1):
                         history["current_metr_level"] = h["level"]
+                        
+            history["arinn_tasks_completed"] += 1
+
+        # Calculate accurate percentage
+        attempted = history.get("arinn_tasks_attempted", 1)
+        completed = history.get("arinn_tasks_completed", 0)
+        percentage = (completed / attempted) * 100.0 if attempted > 0 else 0.0
+
+        history["rsi_efficiency_scores"].append({
+            "timestamp": time.time(),
+            "score": percentage,
+            "generation": correct_generation
+        })
         
         self._save_history(history)
+        return percentage
