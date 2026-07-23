@@ -174,6 +174,9 @@ class ARINNFineTuner:
                     loss = outputs.loss
                     loss.backward()
                     
+                    # Prevent FP16 gradient explosion from corrupting the LoRA weights with NaNs
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+                    
                     optimizer.step()
                     optimizer.zero_grad()
                     progress_bar.update(1)
