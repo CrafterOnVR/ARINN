@@ -63,8 +63,7 @@ class NeuralCore:
             outputs = self.model.generate(
                 **inputs,
                 max_new_tokens=max_tokens,
-                temperature=0.7,
-                do_sample=True,
+                do_sample=False,
                 pad_token_id=self.tokenizer.eos_token_id
             )
             
