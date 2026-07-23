@@ -1,7 +1,12 @@
 import os
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, LogitsProcessor, LogitsProcessorList
 from peft import PeftModel
+
+class NaNGuardLogitsProcessor(LogitsProcessor):
+    def __call__(self, input_ids, scores):
+        # Prevent DirectML from crashing during multinomial sampling by purging NaNs and Infs
+        return torch.nan_to_num(scores, nan=-1e4, posinf=1e4, neginf=-1e4)
 
 class NeuralCore:
     _instance = None
@@ -82,11 +87,12 @@ class NeuralCore:
             outputs = self.model.generate(
                 **inputs,
                 max_new_tokens=max_tokens,
-                do_sample=False,
-                temperature=None,
-                top_p=None,
-                top_k=None,
-                repetition_penalty=1.3,
+                do_sample=True,
+                temperature=0.7,
+                top_p=0.9,
+                top_k=50,
+                repetition_penalty=1.1,
+                logits_processor=LogitsProcessorList([NaNGuardLogitsProcessor()]),
                 pad_token_id=self.tokenizer.eos_token_id
             )
             
