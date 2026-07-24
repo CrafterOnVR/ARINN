@@ -901,8 +901,11 @@
             "generation": 180
         }
     ],
-    "arinn_tasks_attempted": 258,
+    "arinn_tasks_attempted": 292,
     "arinn_tasks_completed": 179,
     "current_metr_level": 0,
-    "completed_metr_tasks": []
+    "completed_metr_tasks": [],
+    "task_consecutive_successes": {
+        "Hello World / Basic Scripting": 0
+    }
 }

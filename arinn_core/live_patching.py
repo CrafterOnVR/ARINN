@@ -57,7 +57,7 @@ class ImmortalCodebase:
                 
                 target_function.__code__ = new_code
                 
-                print(f"[VAULT-7] ⚡ SUCCESS. Memory pointer for '{target_function.__name__}' successfully hot-swapped.")
+                print(f"[VAULT-7] SUCCESS. Memory pointer for '{target_function.__name__}' successfully hot-swapped.")
                 return True
                 
             except ValueError as ve:

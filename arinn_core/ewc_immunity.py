@@ -62,9 +62,9 @@ class ImmuneSystemEWC:
         """
         score = self.calculate_collapse_score(mutated_weights)
         if score > collapse_threshold:
-            print(f"[VAULT-11] 🛑 QUARANTINE TRIGGERED: Collapse Score ({score:.2f}) exceeds threshold ({collapse_threshold})")
+            print(f"[VAULT-11] QUARANTINE TRIGGERED: Collapse Score ({score:.2f}) exceeds threshold ({collapse_threshold})")
             print("[VAULT-11] The mutation destroyed critical knowledge. Rejecting weights.")
             return False
         else:
-            print("[VAULT-11] ✅ IMMUNE CHECK PASSED: Mutation is safe.")
+            print("[VAULT-11] IMMUNE CHECK PASSED: Mutation is safe.")
             return True
